@@ -1,0 +1,168 @@
+/* Menu */
+.menu{
+    margin-top: 05px;
+    background-color: rgb(211, 35, 35) !important;
+    width: 100% !important;
+}
+.menu a{
+        color: white !important;
+}
+
+
+/* Publicidade */ 
+.publicidade{
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 20px;
+}
+.publicidade_produtos{
+    text-align: center;
+   
+    padding: 50px;
+    background-color: rgb(211, 211, 211);
+}
+#tela{
+    background-color: rgba(236, 236, 236, 1);
+    margin: 10px;
+    padding-top: 1%;
+    padding-bottom: 20px;
+}
+
+/* Search */
+
+#pesquisaMercado{
+    width: 500px;
+}
+.search{
+    padding-bottom: 1%;
+}
+
+/* Produtos */ 
+#tela img {
+    width: 40%;
+    height: 165px;
+    padding-top: 5px !important;
+    padding-bottom: 22px;
+    margin:0 auto;
+    display: block;
+}
+.produto{
+    background-color: rgba(243, 243, 243, 1);
+    margin-top: 10px!important;
+}
+.produto h1{
+    text-align: center;
+    font-size: 35px;
+    color: black;
+}
+.produto p{
+    text-align: center  ;
+    color: black;
+    font-size: 20px;
+    padding: 5px 15px 5px 15px;
+}
+
+.card_produto{
+    width: 86%;
+    margin-left: 07% !important;
+    margin-right: 1% !important;
+}
+
+
+.Preco{
+    text-align: center;
+    color: black;
+    font-size: 18px;
+}
+
+.Supermercado{
+
+    font-size: 20px;
+}
+
+.linha{
+    
+    display: inline;
+}
+
+.logo{
+        width: 100%;
+}
+#btn_oferta{
+    margin-left: 38% !important;
+    margin-bottom: 10px;
+}
+
+/* Footer Padrão */
+.footer{
+    margin-top: 10px;
+    background-color: rgb(211, 35, 35);
+    color: rgb(255, 255, 255);
+}
+.footer_area{
+    padding: 20px;
+    text-align: left;
+}
+
+
+
+/* Media Queries */
+
+@media screen and (max-width:600px){
+    .menu{
+        width: 100% !important;
+    }
+    .publicidade{
+        margin: 0 auto !important;
+        width: 100% !important;
+    }
+    .card_produto{
+        width: 89%;
+        margin: 0 auto !important;
+    }
+    .produto{
+        background-color: rgba(243, 243, 243, 1);
+        margin-top: 10px;
+    }
+    #pesquisaMercado{
+        width: 300px;
+    }
+}
+
+@media screen and (min-width:601px) and (max-width:991px){
+    .publicidade{
+        margin: 0 auto !important;
+        width: 85% !important;
+    }
+    .card_produto{
+        width: 460px;
+        margin: 0 auto !important;
+    }
+    .produto{
+        background-color: rgba(243, 243, 243, 1);
+        margin-top: 10px;
+    }
+    #pesquisaMercado{
+        width: 300px;
+    }
+
+}
+
+@media screen and (min-width:992px){
+    .publicidade{
+        margin: 0 auto !important;
+        width: 58% !important;
+    }
+    .card_produto{
+        width: 58%;
+        margin: 0 auto !important;
+    }
+    .produto{
+        background-color: rgba(243, 243, 243, 1);
+        margin-top: 10px;
+    }
+    #pesquisaMercado{
+        width: 300px;
+    }
+    
+}

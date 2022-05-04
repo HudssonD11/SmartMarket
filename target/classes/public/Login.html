@@ -1,0 +1,111 @@
+<!doctype html>
+
+<html lang="pt-br">
+
+<head>
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <title>SmartMarket</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/c81b80495f.js" crossorigin="anonymous"></script>
+    <!-- Meu css -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<!--Menu Superior-->
+
+<header class="container header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light menu">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSite">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item name">
+                    <a class="nav-link" href="Index.html">SmartMarket</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" >|</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" href="Index.html">Home</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" >|</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" href="ListProducts.html">Produtos</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link">|</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" href="ListMarkets.html">Supermercados</a>
+                <li class="nav-item menu_item">
+                    <a class="nav-link">|</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" href="Login.html">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!--1 Bloco com Propagandas-->
+<section class="row log_cad">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 login">
+        <h1>Faça seu login</h1>
+        <div class="bloco">
+            <form action="/login/entrar" method="get">
+
+
+            <label for="username">Usuário</label><br>
+            <input type="text" name="username" id="box" class="form-control"placeholder="Usuário">
+
+            <label for="password">Senha</label><br>
+            <input type="password" name="password" id="box" class="form-control"placeholder="Senha">
+            <input type="submit" value="Login" class="btn btn-primary" id="btn-log">
+
+
+            </form>
+<!--            <label for="username">Usuário</label><br>
+            <input type="text" name="username" id="box" class="form-control"placeholder="Usuário">
+
+            <label for="password">Senha</label><br>
+            <input type="password" name="password" id="box" class="form-control"placeholder="Senha">
+            <button type="button" class="btn btn-primary" id="btn-log">Login</button>
+-->
+        </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 cadastro">
+        <h1>Cadastre-se</h1>
+        <div class="bloco2">
+                <label for="username">Nome completo</label><br>
+                <input type="text" name="username" id="user" class="form-control"placeholder="Nome Completo">
+                <label for="username">Email</label><br>
+                <input type="text" name="username" id="user" class="form-control"placeholder="Email">
+                <label for="username">CPF</label><br>
+                <input type="text" name="username" id="user" class="form-control"placeholder="CPF">
+                <label for="username">Usuário</label><br>
+                <input type="text" name="username" id="user" class="form-control"placeholder="Usuário">
+                <label for="password">Senha</label><br>
+                <input type="password" name="password" id="senha" class="form-control"placeholder="Senha">
+                <button type="button" class="btn btn-primary" id="btn-cad">Cadastrar</button>
+        </div>
+    </div>
+</section>
+<footer class="container footer">
+
+    <div class="row">
+        <div class="col-12 footer_area">
+            SmartMarket - Todos os direitos reservados - 2021
+        </div>
+    </div>
+</footer>
+</main>
+
+</html>

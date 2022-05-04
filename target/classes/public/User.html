@@ -1,0 +1,104 @@
+<!doctype html>
+
+<html lang="pt-br">
+
+<head>
+    <!-- Required meta tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <title>SmartMarket</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/c81b80495f.js" crossorigin="anonymous"></script>
+    <!-- Meu css -->
+    <link rel="stylesheet" href="style_user.css">
+
+</head>
+
+<!--Menu Superior-->
+
+<header class="container header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light menu">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSite">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item name">
+                    <a class="nav-link" href="Index.html">SmartMarket</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link">|</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" href="Index.html">Home</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link">|</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" href="ListProducts.html">Produtos</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link">|</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" href="ListMarkets.html">Supermercados</a>
+                <li class="nav-item menu_item">
+                    <a class="nav-link">|</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" href="Login.html">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!--1 Bloco com Propagandas-->
+<section class="row log_cad">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 cadastro">
+        <h1>Editar Usuário</h1>
+        <div class="bloco2">
+            <label for="username">Novo nome de Usuário</label><br>
+            <input type="text" name="username" id="user" class="form-control" placeholder="Novo nome de usuário">
+            <label for="username">Senha</label><br>
+            <input type="password" name="password" id="senha" class="form-control" placeholder="Senha">
+            <button type="button" class="btn btn-primary" id="btn-cad">Alterar Usuário</button>
+        </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 cadastro">
+        <div class="bloco2">
+        <h1>Editar Senha</h1>
+
+        <label for="username">Senha antiga</label><br>
+        <input type="password" name="password" id="senha" class="form-control" placeholder="Senha">
+        <label for="password">Nova senha</label><br>
+        <input type="password" name="password" id="senha" class="form-control" placeholder="Senha">
+        <button type="button" class="btn btn-primary" id="btn-cad">Alterar Senha</button>
+    </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 cadastro">
+        <br><h1>Produtos Acessados Recentemente</h1>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 box-produto">
+            <div class="produto">
+                <a href="#">
+                    <h1>Arroz Prato Fino</h1>
+                    <p>Arroz</p>
+                </a>
+                <img src="img/arroz.png">
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="container footer">
+
+    <div class="row">
+        <div class="col-12 footer_area">
+            SmartMarket - Todos os direitos reservados - 2021
+        </div>
+    </div>
+</footer>
+</main>
+
+</html>
