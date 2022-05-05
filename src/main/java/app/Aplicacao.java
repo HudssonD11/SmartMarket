@@ -2,6 +2,7 @@ package app;
 
 import static spark.Spark.*;
 import service.EstabelecimentoService;
+import service.ProdutoService;
 import service.UsuarioService;
 
 
@@ -9,6 +10,7 @@ public class Aplicacao {
 	
 	private static EstabelecimentoService EstabService = new EstabelecimentoService();
     private static UsuarioService UserService = new UsuarioService();
+    private static ProdutoService ProdService = new ProdutoService();
 	
     public static void main(String[] args) {
         port(6789);
@@ -22,7 +24,8 @@ public class Aplicacao {
         //get("/produto/list/:orderby", (request, response) -> EstabService.getAll(request, response));
         
         get("/produto", (request, response) -> EstabService.getAll(request, response));
-        get("/login/entrar", (request, response) -> UserService.get(request, response));
+        get("/produto", (request, response) -> EstabService.getAll(request, response));
+        get("/login/entrar", (request, response) -> ProdService.get(request, response));
         
         //get("/produto/update/:id", (request, response) -> EstabService.getToUpdate(request, response));
         

@@ -32,7 +32,8 @@ CREATE TABLE IF NOT EXISTS `SM`.`Produto` (
 CREATE TABLE IF NOT EXISTS `SM`.`Comercializa` (
   `Estabelecimento` CHAR(15) NOT NULL,
   `Produto` CHAR(15) NOT NULL,
-  `Preço` VARCHAR(15))
+  `Preço` VARCHAR(15),
+  `Imagem` VARCHAR)
 
 
 CREATE TABLE IF NOT EXISTS `SM`.`Atualiza` (

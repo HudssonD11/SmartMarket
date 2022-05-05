@@ -9,6 +9,7 @@ public class Produto
     private String categoria;
     private String marca;
     private String unidade;
+	private String imagem;
 	
 	public Produto() 
 	{
@@ -18,9 +19,10 @@ public class Produto
         marca = "";
         unidade = "";
         descricao = "";
+		imagem = "";
 	}
 
-	public Produto(int id, String nome, String descricao, String categoria, String marca, String unidade) 
+	public Produto(int id, String nome, String descricao, String categoria, String marca, String unidade, String imagem) 
 	{
 		setId(id);
         setNome(nome);
@@ -28,6 +30,7 @@ public class Produto
         setMarca(marca);
         setUnidade(unidade);
         setDescricao(descricao);
+		setDescricao(imagem);
 	}		
 
     public String getDescricao() 
@@ -88,5 +91,14 @@ public class Produto
     public void setUnidade(String unidade) 
 	{
         this.unidade = unidade;
+    }
+	public String getImagem() 
+	{
+        return imagem;
+    }
+
+    public void setImagem(String imagem) 
+	{
+        this.imagem = imagem;
     }
 }

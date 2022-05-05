@@ -25,9 +25,9 @@ public class ProdutoDAO extends DAO {
 	public boolean insert(Produto produto) {
 		boolean status = false;
 		try {
-			String sql = "INSERT INTO produto (id, nome, descricao, categoria, marca, unidade) "
+			String sql = "INSERT INTO produto (id, nome, descricao, categoria, marca, unidade, imagem) "
 		               + "VALUES ("+produto.getId()+", '" + produto.getNome() +"', '"+produto.getDescricao() + "', '"
-		               + produto.getCategoria() + "', '" + produto.getMarca() + ", '"+produto.getUnidade()+"');";
+		               + produto.getCategoria() + "', '" + produto.getMarca() + ", '"+produto.getUnidade()+", '"+produto.getImagem()+"');";
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
@@ -47,7 +47,7 @@ public class ProdutoDAO extends DAO {
 			String sql = "SELECT * FROM produto WHERE id="+id;
 			ResultSet rs = st.executeQuery(sql);	
 	        if(rs.next()){            
-	        	 produto = new Produto(rs.getInt("id"), rs.getString("nome"), rs.getString("descricao"), rs.getString("categoria"), rs.getString("marca"), rs.getString("unidade"));
+	        	 produto = new Produto(rs.getInt("id"), rs.getString("nome"), rs.getString("descricao"), rs.getString("categoria"), rs.getString("marca"), rs.getString("unidade"), rs.getString("imagem"));
 	        }
 	        st.close();
 		} catch (Exception e) {
@@ -90,7 +90,7 @@ public class ProdutoDAO extends DAO {
 			String sql = "SELECT * FROM produto" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
 			ResultSet rs = st.executeQuery(sql);	           
 	        while(rs.next()) {	            	
-	        	Produto p = new Produto(rs.getInt("id"), rs.getString("nome"), rs.getString("descricao"), rs.getString("categoria"), rs.getString("marca"), rs.getString("unidade"));
+	        	Produto p = new Produto(rs.getInt("id"), rs.getString("nome"), rs.getString("descricao"), rs.getString("categoria"), rs.getString("marca"), rs.getString("unidade"), rs.getString("imagem"));
 	            produtos.add(p);
 	        }
 	        st.close();
@@ -107,7 +107,8 @@ public class ProdutoDAO extends DAO {
 			String sql = "UPDATE produto SET nome = '"+produto.getNome()+"', descricao = '" + produto.getDescricao() + "', "
 					   + "categoria = '" + produto.getCategoria() + "'', " 
 					   + "marca = '" + produto.getMarca() + "', "
-					   + "unidade = '" + produto.getUnidade() + "'";
+					   + "unidade = '" + produto.getUnidade() + "', "
+					   + "imagem = '" + produto.getImagem() + "'";
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();

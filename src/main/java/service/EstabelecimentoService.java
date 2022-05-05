@@ -34,7 +34,7 @@ public class EstabelecimentoService
         form += "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css\">";
         form += "<script src=\"https://kit.fontawesome.com/c81b80495f.js\" crossorigin=\"anonymous\"></script>";
         form += "<!-- Meu css -->";
-        form += "<link rel=\"stylesheet\" href=\"style_Mercado.css\">";
+        form += "<link rel=\"stylesheet\" href=\"style.css\">";
         form += "<script src=\"app.js\"></script>";
         form += "<script> VARIAVEL ";
 /*        "function mostrarMercados(mercados)"+

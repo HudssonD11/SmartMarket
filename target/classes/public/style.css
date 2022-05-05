@@ -14,13 +14,13 @@
 
 /* Publicidade */ 
 .publicidade{
-    margin-left: 5%;
+    width: 60%;
+    margin-left: 20%;
     margin-right: 5%;
     padding: 20px;
 }
 .publicidade_produtos{
     text-align: center;
-   
     padding: 50px;
     background-color: rgb(211, 211, 211);
 }
@@ -37,6 +37,41 @@
     width: 500px;
 }
 
+
+/* Mercados */
+
+.mercado h1{
+    text-align: center;
+    font-size: 35px;
+    color: black;
+}
+.mercado p{
+    text-align: center ;
+    color: black;
+    font-size: 20px;
+    padding: 5px 15px 5px 15px;
+}
+.mercado{
+    background-color: rgba(243, 243, 243, 1);
+    margin-top: 10px!important;  
+}
+#btn_oferta{
+    margin-left: 38% !important;
+    margin-bottom: 10px;
+}
+.card_mercado{
+    width: 58%;
+    margin-left: 21% !important;
+    margin-right: 1% !important;
+}
+#telaMercado img {
+    width: 50%;
+    height: 50%;
+    padding-top: 5px !important;
+    padding-bottom: 22px;
+    margin: 0 auto;
+    display: block;
+}
 /* Produtos */ 
 #tela img {
     width: 40%;
@@ -67,9 +102,65 @@
     margin-bottom: 10px;
 }
 .card_produto{
-    width: 86%;
-    margin-left: 07% !important;
+    width: 58%;
+    margin-left: 21% !important;
     margin-right: 1% !important;
+}
+
+/* InsertProducts */
+.card_insert{
+    width: 58%;
+    margin-left: 21% !important;
+    margin-right: 1% !important;
+}
+#insert{
+    margin-left: 21%;
+}
+
+/* User */
+
+.editUser{
+    margin-left: 25%;
+    margin-right: 20%;
+    padding: 5px;
+    
+}
+
+#btn-change{
+    background-color: rgb(209, 74, 74) !important;
+    margin-top: 3%;
+    float: right;
+    margin-right: 20%;
+    display: block !important;
+}
+
+#user , #senha, #senhaAntiga, #senhaNova{
+    width: 80%;
+}
+
+.produto img {
+    width: 30%;
+    height: 165px;
+    padding-top: 5px !important;
+    padding-bottom: 22px;
+    margin:0 auto;
+    display: block;
+}
+
+/* Validação */
+
+#btn-aceitar{
+    margin-left: 21%;
+    margin-bottom: 3%;
+    
+}
+#btn-validacao{
+    background-color: rgb(209, 74, 74) !important;
+    margin-left: 21%;
+    margin-bottom: 3%;
+}
+#valid{
+    margin-left: 21%;
 }
 
 /* Recompensas */
@@ -138,6 +229,11 @@
 
 #box_refresh{
     width: 60%!important;
+}
+
+/* Show Market */ 
+.logo{
+    width: 50%;
 }
 
 

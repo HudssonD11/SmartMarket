@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/c81b80495f.js" crossorigin="anonymous"></script>
     <!-- Meu css -->
-    <link rel="stylesheet" href="style_user.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -56,31 +56,31 @@
     </nav>
 </header>
 <!--1 Bloco com Propagandas-->
-<section class="row log_cad">
-    <div class="col-12 col-sm-12 col-md-12 col-lg-6 cadastro">
+<section class="row editUser">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6" >
         <h1>Editar Usuário</h1>
-        <div class="bloco2">
+        <div>
             <label for="username">Novo nome de Usuário</label><br>
-            <input type="text" name="username" id="user" class="form-control" placeholder="Novo nome de usuário">
+            <input type="text" name="username" id="user" class="form-control" placeholder="Novo nome de usuário" class = "edit">
             <label for="username">Senha</label><br>
             <input type="password" name="password" id="senha" class="form-control" placeholder="Senha">
-            <button type="button" class="btn btn-primary" id="btn-cad">Alterar Usuário</button>
+            <button type="button" class="btn btn-primary" id="btn-change">Alterar Usuário</button>
         </div>
     </div>
-    <div class="col-12 col-sm-12 col-md-12 col-lg-6 cadastro">
-        <div class="bloco2">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6">
+        <div>
         <h1>Editar Senha</h1>
 
         <label for="username">Senha antiga</label><br>
-        <input type="password" name="password" id="senha" class="form-control" placeholder="Senha">
+        <input type="password" name="password" id="senhaAntiga" class="form-control" placeholder="Senha">
         <label for="password">Nova senha</label><br>
-        <input type="password" name="password" id="senha" class="form-control" placeholder="Senha">
-        <button type="button" class="btn btn-primary" id="btn-cad">Alterar Senha</button>
+        <input type="password" name="password" id="senhaNova" class="form-control" placeholder="Senha">
+        <button type="button" class="btn btn-primary" id="btn-change">Alterar Senha</button>
     </div>
     </div>
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12 cadastro">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
         <br><h1>Produtos Acessados Recentemente</h1>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-4 box-produto">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
             <div class="produto">
                 <a href="#">
                     <h1>Arroz Prato Fino</h1>
