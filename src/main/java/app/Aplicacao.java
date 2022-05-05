@@ -26,11 +26,11 @@ public class Aplicacao {
         
         get("/mercados", (request, response) -> EstabService.getAll(request, response));
         get("/mercados/:idProduct", (request, response) -> EstabService.getByProduct(request, response));
-        post("/mercados/adicionar", (request, response) -> EstabService.insert(request, response));
+        //post("/mercados/adicionar", (request, response) -> EstabService.insert(request, response));
         //get("/produto", (request, response) -> EstabService.getAll(request, response));
         get("/produtos", (request, response) -> ProdService.getAll(request, response));
         get("/produtos/:idEstab", (request, response) -> ProdService.getByEstab(request, response));
-        post("/produtos/adicionar", (request, response) -> ProdService.insert(request, response));
+        //post("/produtos/adicionar", (request, response) -> ProdService.insert(request, response));
         
         get("/login/entrar", (request, response) -> UserService.get(request, response));
         get("/login", (request, response) -> UserService.getLogin(request, response));
