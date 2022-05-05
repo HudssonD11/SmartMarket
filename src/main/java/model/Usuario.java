@@ -6,11 +6,13 @@ public class Usuario
         private String nome;
         private String login;
         private String senha;
+        private String email;
         private int creditos;
         private char tipo;
 
         public Usuario() 
         {
+            email = "";
             CPF = "";
             nome = "";
             login = "";
@@ -20,14 +22,21 @@ public class Usuario
 
         }
 
-        public Usuario(String CPF, String nome, String login, String senha, int creditos, char tipo) 
+        public Usuario(String CPF, String nome, String login, String senha, String email, int creditos, char tipo) 
         {
+            setEmail(email);
             setLogin(login);
             setSenha(senha);
             setNome(nome);
             setTipo(tipo);
             setCreditos(creditos);
             setCPF(CPF);
+        }
+
+
+        public void setEmail(String email) 
+        {
+            this.email = email;
         }
 
         public void setNome(String nome) 
@@ -58,6 +67,11 @@ public class Usuario
         public void setCPF(String cpf) 
         {
             this.CPF = cpf;
+        }
+
+        public String getEmail()
+        {
+            return this.email;
         }
 
         public String getNome() 

@@ -1,6 +1,9 @@
 package dao;
 
 import model.Estabelecimento;
+import model.Usuario;
+import spark.Request;
+import spark.Response;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -153,6 +156,25 @@ public class EstabelecimentoDAO extends DAO
     }
     
     
+    public Object insert(Request request, Response response) {
+		String nome = request.queryParams("nome");
+
+		String resp = "";
+		
+		Usuario user = new Usuario(cpf, nome, login, senha, email, 0, 'n');
+		
+		if(userDAO.insert(user) == true) {
+            resp = "usuario (" + nome + ") inserido!";
+            response.status(201); // 201 Created
+		} else {
+			resp = "usuario (" + nome + ") não inserido!";
+			response.status(404); // 404 Not found
+		}
+			
+		String html = makeForm();
+		return html;
+	}
+
     public boolean delete(int id) {
         boolean status = false;
         try {  

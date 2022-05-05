@@ -27,9 +27,9 @@ public class UsuarioDAO extends DAO {
 	public boolean insert(Usuario usuario) {
 		boolean status = false;
 		try {
-			String sql = "INSERT INTO usuario (CPF, nome, login, senha, creditos, tipo) "
+			String sql = "INSERT INTO sm.usuario (CPF, nome, login, senha, email, creditos, tipo) "
 		               + "VALUES ('"+usuario.getCPF()+"', '" + usuario.getNome() + "', '"
-		               + usuario.getLogin() + "', '" + usuario.getSenha() +"', ?, '"+ usuario.getTipo() +"');";
+		               + usuario.getLogin() + "', '" + usuario.getSenha() +"', '"+usuario.getEmail()+"', ?, '"+ usuario.getTipo() +"');";
 			PreparedStatement st = conexao.prepareStatement(sql);
 		    st.setInt(1, usuario.getCreditos());
 			st.executeUpdate();
@@ -47,10 +47,10 @@ public class UsuarioDAO extends DAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM usuario WHERE CPF='"+CPF+"'";
+			String sql = "SELECT * FROM sm.usuario WHERE CPF='"+CPF+"'";
 			ResultSet rs = st.executeQuery(sql);	
 	        if(rs.next()){            
-	        	user = new Usuario(rs.getString("CPF"), rs.getString("nome"), rs.getString("login"), rs.getString("senha"), rs.getInt("creditos"), rs.getString("tipo").charAt(0));
+	        	user = new Usuario(rs.getString("CPF"), rs.getString("nome"), rs.getString("login"), rs.getString("senha"), rs.getString("email"), rs.getInt("creditos"), rs.getString("tipo").charAt(0));
 	        }
 	        st.close();
 		} catch (Exception e) {
@@ -68,7 +68,7 @@ public class UsuarioDAO extends DAO {
 
 			ResultSet rs = st.executeQuery(sql);	
 	        if(rs.next()){            
-	        	user = new Usuario(rs.getString("CPF"), rs.getString("nome"), rs.getString("login"), rs.getString("senha"), rs.getInt("creditos"), rs.getString("tipo").charAt(0));
+	        	user = new Usuario(rs.getString("CPF"), rs.getString("nome"), rs.getString("login"), rs.getString("senha"), rs.getString("email"), rs.getInt("creditos"), rs.getString("tipo").charAt(0));
 	        }
 	        st.close();
 		} catch (Exception e) {
@@ -107,10 +107,10 @@ public class UsuarioDAO extends DAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM usuario" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
+			String sql = "SELECT * FROM sm.usuario" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
 			ResultSet rs = st.executeQuery(sql);	           
 	        while(rs.next()) {	            	
-	        	Usuario p = new Usuario(rs.getString("CPF"), rs.getString("nome"), rs.getString("login"), rs.getString("senha"), rs.getInt("creditos"), rs.getString("tipo").charAt(0));
+	        	Usuario p = new Usuario(rs.getString("CPF"), rs.getString("nome"), rs.getString("login"), rs.getString("senha"), rs.getString("email"), rs.getInt("creditos"), rs.getString("tipo").charAt(0));
 	            usuarios.add(p);
 	        }
 	        st.close();
@@ -124,7 +124,7 @@ public class UsuarioDAO extends DAO {
 	public boolean update(Usuario usuario) {
 		boolean status = false;
 		try {  
-			String sql = "UPDATE usuario SET nome = '"+usuario.getNome()
+			String sql = "UPDATE sm.usuario SET nome = '"+usuario.getNome() + "', email = '"+usuario.getEmail()
             +"', login = '"+usuario.getLogin()+"', senha = '"+usuario.getSenha()
             +"', creditos = "+usuario.getCreditos()+" tipo = '"+usuario.getTipo()+"',  WHERE CPF = '" + usuario.getCPF()+"'";
 			PreparedStatement st = conexao.prepareStatement(sql);
@@ -142,7 +142,7 @@ public class UsuarioDAO extends DAO {
 		boolean status = false;
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("DELETE FROM Usuario WHERE CPF = '" + id+"'");
+			st.executeUpdate("DELETE FROM sm.usuario WHERE CPF = '" + id+"'");
 			st.close();
 			status = true;
 		} catch (SQLException u) {  
