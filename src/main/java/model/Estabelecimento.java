@@ -9,6 +9,7 @@ public class Estabelecimento
     private String bairro;
     private String rua;
     private short numero;
+    private String preco;
 
     public Estabelecimento()
     {
@@ -19,6 +20,7 @@ public class Estabelecimento
         bairro = "";
         rua = "";
         numero = 0;
+        preco = "";
     }
 
     public Estabelecimento(int id, String nome, String estado, String cidade, String bairro, String rua, short numero)
@@ -30,6 +32,7 @@ public class Estabelecimento
         this.bairro = bairro;
         this.rua = rua;
         this.numero = numero;
+        preco = "";
     }
 
     public void setId(int newId)
@@ -61,6 +64,16 @@ public class Estabelecimento
     public void setNumero(short numero)
     {
         this.numero = numero;
+    }
+
+    public void setPreco(String preco)
+    {
+        this.preco = preco;
+    }
+
+    public String getPreco()
+    {
+        return this.preco;
     }
 
     public int getId()

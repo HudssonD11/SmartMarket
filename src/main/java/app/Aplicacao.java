@@ -4,6 +4,7 @@ import static spark.Spark.*;
 import service.EstabelecimentoService;
 import service.ProdutoService;
 import service.UsuarioService;
+import dao.DAO;
 
 
 public class Aplicacao {
@@ -23,10 +24,13 @@ public class Aplicacao {
         
         //get("/produto/list/:orderby", (request, response) -> EstabService.getAll(request, response));
         
-        get("/produto", (request, response) -> EstabService.getAll(request, response));
-        get("/produto", (request, response) -> EstabService.getAll(request, response));
-        get("/login/entrar", (request, response) -> ProdService.get(request, response));
+        get("/mercados", (request, response) -> EstabService.getAll(request, response));
+        get("/mercados/:idProduct", (request, response) -> EstabService.getByProduct(request, response));
+        //get("/produto", (request, response) -> EstabService.getAll(request, response));
+        get("/produtos", (request, response) -> ProdService.getAll(request, response));
+        get("/produtos/:idEstab", (request, response) -> ProdService.getByEstab(request, response));
         
+        get("/login/entrar", (request, response) -> UserService.get(request, response));
         //get("/produto/update/:id", (request, response) -> EstabService.getToUpdate(request, response));
         
         //post("/produto/update/:id", (request, response) -> EstabService.update(request, response));

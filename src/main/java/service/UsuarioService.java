@@ -22,7 +22,7 @@ public class UsuarioService
 
     }
 
-    public void makeForm(String login, String senha)
+    public String makeForm(String login, String senha)
     {
         String form = "";
         form += "<!doctype html>";
@@ -36,8 +36,8 @@ public class UsuarioService
         form += "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css\">";
         form += "<script src=\"https://kit.fontawesome.com/c81b80495f.js\" crossorigin=\"anonymous\"></script>";
         form += "<!-- Meu css -->";
-        form += "<script src=\"app.js\"></script>";
-        form += "<script>SUBSTITUIR</script>";
+        form += "<script src=\"public/app.js\"></script>";
+        form += "<script> SUBSTITUIR </script>";
         form += "<link rel=\"stylesheet\" href=\"style.css\">";
         form += "</head>";
         form += "<!--Menu Superior-->";
@@ -125,17 +125,18 @@ public class UsuarioService
         String subs = "let user = ''; ";
         if(user!=null)
         {
-            subs += "user = {login: \""+user.getLogin()+"\", nome: \""+user.getNome()+"\", creditos: \""+user.getCreditos()+"\", tipo: \""+user.getTipo()+"\", CPF: \""+user.getCPF()+"\"};";
-        }
+            subs = "let user = {login: \""+user.getLogin()+"\", nome: \""+user.getNome()+"\", creditos: \""+user.getCreditos()+"\", tipo: \""+user.getTipo()+"\", CPF: \""+user.getCPF()+"\"};";
+        }        
         form = form.replaceFirst("SUBSTITUIR", subs);
+        return form;
     }
     
     public Object get(Request request, Response response)
     {
         String login = request.queryParams("username");
-        System.out.println(login);
         String senha = request.queryParams("password");
-        makeForm(login, senha);
-        return form;
+        String html = makeForm(login, senha);
+
+        return html;
     }
 }

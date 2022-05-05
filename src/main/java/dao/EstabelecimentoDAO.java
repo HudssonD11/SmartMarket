@@ -96,6 +96,43 @@ public class EstabelecimentoDAO extends DAO
         return estabs;
     }
     
+    public List<Estabelecimento> getByProduct(int idProduct) {
+    	System.out.println("Aqyu");
+        return getByProduct(idProduct, "");
+    }
+
+    public List<Estabelecimento> getByProductOrderByID(int idProduct) {
+        return getByProduct(idProduct, "id");
+    }
+
+    public List<Estabelecimento> getByProductOrderByNome(int idProduct) {
+        return getByProduct(idProduct, "nome");		
+    }
+
+    public List<Estabelecimento> getByProductOrderByEndereco(int idProduct) {
+        return getByProduct(idProduct, "estado, cidade, bairro");		
+    }
+
+    private List<Estabelecimento> getByProduct(int idProduct, String orderBy) {
+        List<Estabelecimento> estabs = new ArrayList<Estabelecimento>();
+        
+        try {
+            Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            String sql = "SELECT * FROM (SELECT * FROM sm.comercializa WHERE sm.comercializa.produto = "+idProduct+") AS A JOIN sm.estabelecimento ON A.estabelecimento = sm.estabelecimento.id" /*+  ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));*/;
+//            String sql = "SELECT * FROM \"sm\".\"estabelecimento\"" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
+            ResultSet rs = st.executeQuery(sql);	           
+            while(rs.next()) {	            	
+                Estabelecimento p = new Estabelecimento(rs.getInt("id"), rs.getString("nome"), rs.getString("estado"), rs.getString("cidade"), rs.getString("bairro"), rs.getString("rua"), rs.getShort("numero"));
+                p.setPreco(rs.getString("preco"));
+                estabs.add(p);
+            }
+            st.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return estabs;
+    }
+
     
     public boolean update(Estabelecimento estab) {
         boolean status = false;

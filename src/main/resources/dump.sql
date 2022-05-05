@@ -24,9 +24,10 @@ CREATE TABLE IF NOT EXISTS SM.produto (
   id INT NOT NULL,
   nome VARCHAR(45) NOT NULL,
   categoria VARCHAR(45) NOT NULL,
+  descricao VARCHAR(45),
   marca VARCHAR(45) NOT NULL,
   unidade VARCHAR(10),
-  imagem VARCHAR (500));
+  imagem VARCHAR (120));
 
 
 CREATE TABLE IF NOT EXISTS SM.comercializa (
