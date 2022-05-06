@@ -10,6 +10,7 @@ public class Estabelecimento
     private String rua;
     private short numero;
     private String preco;
+    private String logo;
 
     public Estabelecimento()
     {
@@ -21,9 +22,10 @@ public class Estabelecimento
         rua = "";
         numero = 0;
         preco = "";
+        logo = "";
     }
 
-    public Estabelecimento(int id, String nome, String estado, String cidade, String bairro, String rua, short numero)
+    public Estabelecimento(int id, String nome, String estado, String cidade, String bairro, String rua, short numero, String logo)
     {
         this.id = id;
         this.nome = nome;
@@ -32,6 +34,7 @@ public class Estabelecimento
         this.bairro = bairro;
         this.rua = rua;
         this.numero = numero;
+        this.logo = logo;
         preco = "";
     }
 
@@ -71,6 +74,11 @@ public class Estabelecimento
         this.preco = preco;
     }
 
+    public void setLogo(String logo)
+    {
+        this.logo = logo;
+    }
+
     public String getPreco()
     {
         return this.preco;
@@ -105,6 +113,10 @@ public class Estabelecimento
     public short getNumero()
     {
         return this.numero;
+    }
+    public String getLogo()
+    {
+        return this.logo;
     }
 
 }

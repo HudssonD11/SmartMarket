@@ -183,10 +183,8 @@ public class ProdutoService {
 		form += "</nav>";
 		form += "</header>";
 		form += "<!--1 Bloco com Propagandas-->";
-		form += "<section class=\"row publicidade\">";
-		form += "<div class=\"col-12 col-sm-12 col-md-12 col-lg-12 publicidade_produtos\">";
-		form += "<h1>Propaganda</h1>";
-		form += "</div>";
+		form += "<section class=\"row publicidade\"  id=\"mercado\">";
+
 		form += "</section>";
 		// parte de pesquisa de produtos
 		form += "<section class=\"row search\">";
@@ -231,7 +229,7 @@ public class ProdutoService {
 			js+= "{id: \""+p.getId()+"\", nome: \""+p.getNome()+"\", descricao: \""+p.getDescricao()+"\", categoria: \""+p.getCategoria()+"\", marca: \""+p.getMarca()+"\", unidade: \""+p.getUnidade()+"\", preco: \""+p.getPreco()+"\", imagem: \""+p.getImagem()+"\"},";
 		}
 		js += "{}]; ";
-		js += "let mercado = {id: \""+idEstab+"\", nome: \""+estab.getNome()+"\", estado: \""+estab.getEstado()+"\", cidade: \""+estab.getCidade()+"\", bairro: \""+estab.getBairro()+"\", rua: \""+estab.getRua()+"\", numero: \""+estab.getNumero()+"\"};";
+		js += "let mercado = {id: \""+idEstab+"\", nome: \""+estab.getNome()+"\", estado: \""+estab.getEstado()+"\", cidade: \""+estab.getCidade()+"\", bairro: \""+estab.getBairro()+"\", rua: \""+estab.getRua()+"\", numero: \""+estab.getNumero()+"\", imagem: \""+estab.getLogo()+"\"};";
 		form = form.replaceFirst("VARIAVEL", js);
 		return form;
 

@@ -18,7 +18,8 @@ CREATE TABLE IF NOT EXISTS SM.estabelecimento (
   cidade VARCHAR(45) NOT NULL,
   bairro VARCHAR(45) NOT NULL,
   rua VARCHAR(45) NOT NULL,
-  numero SMALLINT NOT NULL);
+  numero SMALLINT NOT NULL,
+  logo VARCHAR(500));
 
 
 CREATE TABLE IF NOT EXISTS SM.produto (
@@ -28,7 +29,7 @@ CREATE TABLE IF NOT EXISTS SM.produto (
   descricao VARCHAR(45),
   marca VARCHAR(45) NOT NULL,
   unidade VARCHAR(10),
-  imagem VARCHAR (120));
+  imagem VARCHAR (500));
 
 
 CREATE TABLE IF NOT EXISTS SM.comercializa (

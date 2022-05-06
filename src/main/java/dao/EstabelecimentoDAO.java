@@ -32,10 +32,10 @@ public class EstabelecimentoDAO extends DAO
     public boolean insert(Estabelecimento estab) {
         boolean status = false;
         try {
-            String sql = "INSERT INTO \"sm\".\"estabelecimento\" (id, nome, estado, cidade, bairro, rua, numero) "
+            String sql = "INSERT INTO \"sm\".\"estabelecimento\" (id, nome, estado, cidade, bairro, rua, logo, numero) "
                         + "VALUES (" + estab.getId() + ", '"
                         + estab.getNome() + "', '" + estab.getEstado() + "', '"+estab.getCidade()+"', '"
-                        + estab.getBairro() + "', '" + estab.getRua() + "', ?);";
+                        + estab.getBairro() + "', '" + estab.getRua() +"', '" + estab.getLogo() + "', ?);";
             PreparedStatement st = conexao.prepareStatement(sql);
             st.setShort(1, estab.getNumero());
             st.executeUpdate();
@@ -73,7 +73,7 @@ public class EstabelecimentoDAO extends DAO
             String sql = "SELECT * FROM \"sm\".\"estabelecimento\" WHERE id="+id;
             ResultSet rs = st.executeQuery(sql);	
             if(rs.next()){            
-                estab = new Estabelecimento(rs.getInt("id"), rs.getString("nome"), rs.getString("estado"), rs.getString("cidade"), rs.getString("bairro"), rs.getString("rua"), rs.getShort("numero"));
+                estab = new Estabelecimento(rs.getInt("id"), rs.getString("nome"), rs.getString("estado"), rs.getString("cidade"), rs.getString("bairro"), rs.getString("rua"), rs.getShort("numero"),  rs.getString("logo"));
             }
             st.close();
         } catch (Exception e) {
@@ -106,7 +106,7 @@ public class EstabelecimentoDAO extends DAO
             String sql = "SELECT * FROM \"sm\".\"estabelecimento\"" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
             ResultSet rs = st.executeQuery(sql);	           
             while(rs.next()) {	            	
-                Estabelecimento p = new Estabelecimento(rs.getInt("id"), rs.getString("nome"), rs.getString("estado"), rs.getString("cidade"), rs.getString("bairro"), rs.getString("rua"), rs.getShort("numero"));
+                Estabelecimento p = new Estabelecimento(rs.getInt("id"), rs.getString("nome"), rs.getString("estado"), rs.getString("cidade"), rs.getString("bairro"), rs.getString("rua"), rs.getShort("numero"), rs.getString("logo"));
                 estabs.add(p);
             }
             st.close();
@@ -142,7 +142,7 @@ public class EstabelecimentoDAO extends DAO
 //            String sql = "SELECT * FROM \"sm\".\"estabelecimento\"" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
             ResultSet rs = st.executeQuery(sql);	           
             while(rs.next()) {	            	
-                Estabelecimento p = new Estabelecimento(rs.getInt("id"), rs.getString("nome"), rs.getString("estado"), rs.getString("cidade"), rs.getString("bairro"), rs.getString("rua"), rs.getShort("numero"));
+                Estabelecimento p = new Estabelecimento(rs.getInt("id"), rs.getString("nome"), rs.getString("estado"), rs.getString("cidade"), rs.getString("bairro"), rs.getString("rua"), rs.getShort("numero"), rs.getString("logo"));
                 p.setPreco(rs.getString("preco"));
                 estabs.add(p);
             }

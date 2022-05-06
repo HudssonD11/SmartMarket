@@ -112,7 +112,7 @@ public class EstabelecimentoService
         for (Estabelecimento e : mercados) 
         {
             js += "{ id: \""+e.getId()+"\", nome: \""+e.getNome()+"\", estado: \""+e.getEstado()+"\", cidade: \""+e.getCidade()
-            +"\", bairro: \""+e.getBairro()+"\", rua: \""+e.getRua()+"\", numero: \""+e.getNumero()+"\"},";
+            +"\", bairro: \""+e.getBairro()+"\", rua: \""+e.getRua()+"\", numero: \""+e.getNumero()+"\", imagem: \""+e.getLogo()+"\"},";
         }
         js += "{}];";
 
@@ -222,7 +222,7 @@ public class EstabelecimentoService
         for (Estabelecimento e : mercados) 
         {
             js += "{ id: \""+e.getId()+"\", nome: \""+e.getNome()+"\", estado: \""+e.getEstado()+"\", cidade: \""+e.getCidade()
-            +"\", bairro: \""+e.getBairro()+"\", rua: \""+e.getRua()+"\", numero: \""+e.getNumero()+"\", preco: \""+e.getPreco()+"\"},";
+            +"\", bairro: \""+e.getBairro()+"\", rua: \""+e.getRua()+"\", numero: \""+e.getNumero()+"\", preco: \""+e.getPreco()+"\", imagem: \""+e.getLogo()+"\"},";
         }
         js += "{}]; ";
         js += "let produto = {id: \"idProduct\", nome: \""+prod.getNome()+"\", descricao: \""+prod.getDescricao()+"\", categoria: \""+prod.getCategoria()+"\", marca: \""+prod.getMarca()+"\", unidade: \""+prod.getUnidade()+"\", imagem: \""+prod.getImagem()+"\", preco: \""+prod.getPreco()+"\"}";
@@ -320,6 +320,8 @@ public class EstabelecimentoService
         form +="<input type=\"text\" name=\"rua\" id=\"user\" class=\"form-control\" placeholder=\"Rua do mercado\">";
         form +="<label for=\"username\">Número</label><br>";
         form +="<input type=\"text\" name=\"numero\" id=\"user\" class=\"form-control\" placeholder=\"Número do mercado\">";
+        form +="<label for=\"username\">Logo</label><br>";
+        form +="<input type=\"text\" name=\"logo\" id=\"user\" class=\"form-control\" placeholder=\"Logo do mercado\">";
         form +="<input type=\"submit\" value=\"Cadastrar\" class=\"btn btn-primary\" id=\"btn-cad\"> </form>";
         form +="</div>";
         form +="</section>";
@@ -349,9 +351,10 @@ public class EstabelecimentoService
 		String bairro = request.queryParams("bairro");
 		String rua = request.queryParams("rua");
         short numero = Short.valueOf(request.queryParams("numero"));
+        String logo = request.queryParams("logo");
 		
 		String resp = "";
-		Estabelecimento estab = new Estabelecimento(nextId++, nome, estado, cidade, bairro, rua, numero);
+		Estabelecimento estab = new Estabelecimento(nextId++, nome, estado, cidade, bairro, rua, numero, logo);
 		
 		if(estabelecimentoDAO.insert(estab) == true) {
             resp = "estabelecimento (" + nome + ") inserido!";
