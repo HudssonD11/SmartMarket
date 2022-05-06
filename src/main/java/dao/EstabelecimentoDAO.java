@@ -117,7 +117,6 @@ public class EstabelecimentoDAO extends DAO
     }
     
     public List<Estabelecimento> getByProduct(int idProduct) {
-    	System.out.println("Aqyu");
         return getByProduct(idProduct, "");
     }
 
@@ -138,7 +137,8 @@ public class EstabelecimentoDAO extends DAO
         
         try {
             Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-            String sql = "SELECT * FROM (SELECT * FROM sm.comercializa WHERE sm.comercializa.produto = "+idProduct+") AS A JOIN sm.estabelecimento ON A.estabelecimento = sm.estabelecimento.id" /*+  ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));*/;
+            String sql = "SELECT * FROM (SELECT * FROM sm.comercializa WHERE sm.comercializa.produto = "+idProduct
+            		+") AS A JOIN sm.estabelecimento ON A.estabelecimento = sm.estabelecimento.id" /*+  ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));*/;
 //            String sql = "SELECT * FROM \"sm\".\"estabelecimento\"" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
             ResultSet rs = st.executeQuery(sql);	           
             while(rs.next()) {	            	

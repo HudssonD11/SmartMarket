@@ -9,7 +9,9 @@ import java.io.File;
 import java.time.LocalDateTime;
 import java.util.List;
 import dao.ProdutoDAO;
+import dao.EstabelecimentoDAO;
 import model.Produto;
+import model.Estabelecimento;
 import spark.Request;
 import spark.Response;
 
@@ -208,7 +210,7 @@ public class ProdutoService {
 		form += "</body>";
 		form += "</html>";
 	
-		List<Produto> produtos = produtoDAO.getByEstab(idEstab);
+/*		List<Produto> produtos = produtoDAO.getByEstab(idEstab);
 
 		String js = "";
 		js += "let produtos = [";
@@ -217,7 +219,22 @@ public class ProdutoService {
 		}
 		js += "{}]";
 		form = form.replaceFirst("VARIAVEL", js);
+		return form; */
+		List<Produto> produtos = produtoDAO.getByEstab(idEstab);
+		System.out.println(produtos);
+		EstabelecimentoDAO estabDAO = new EstabelecimentoDAO();
+		Estabelecimento estab = estabDAO.get(idEstab);
+
+		String js = "";
+		js += "let produtos = [";
+		for (Produto p : produtos){
+			js+= "{id: \""+p.getId()+"\", nome: \""+p.getNome()+"\", descricao: \""+p.getDescricao()+"\", categoria: \""+p.getCategoria()+"\", marca: \""+p.getMarca()+"\", unidade: \""+p.getUnidade()+"\", preco: \""+p.getPreco()+"\", imagem: \""+p.getImagem()+"\"},";
+		}
+		js += "{}]; ";
+		js += "let mercado = {id: \""+idEstab+"\", nome: \""+estab.getNome()+"\", estado: \""+estab.getEstado()+"\", cidade: \""+estab.getCidade()+"\", bairro: \""+estab.getBairro()+"\", rua: \""+estab.getRua()+"\", numero: \""+estab.getNumero()+"\"};";
+		form = form.replaceFirst("VARIAVEL", js);
 		return form;
+
 	}
 
 	
@@ -253,7 +270,7 @@ public class ProdutoService {
 		form += "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css\">";
 		form += "<script src=\"https://kit.fontawesome.com/c81b80495f.js\" crossorigin=\"anonymous\"></script>";
 		form += "<!-- Meu css -->";
-		form += "<link rel=\"stylesheet\" href=\"style.css\">";
+		form += "<link rel=\"stylesheet\" href=\"../style.css\">";
 		form += "</head>";
 		form += "<!--Menu Superior-->";
 		form += "<header class=\"container header\">";
@@ -342,7 +359,7 @@ public class ProdutoService {
         String imagem = request.queryParams("imagem");
 		
 		String resp = "";
-		Produto prod = new Produto(nextId++, nome, descricao, categoria, marca, unidade, imagem);
+		Produto prod = new Produto(++nextId, nome, descricao, categoria, marca, unidade, imagem);
 		
 		if(produtoDAO.insert(prod) == true) {
             resp = "produto (" + nome + ") inserido!";

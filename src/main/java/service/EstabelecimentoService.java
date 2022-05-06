@@ -1,7 +1,9 @@
 package service;
 import java.util.List;
 import dao.EstabelecimentoDAO;
+import dao.ProdutoDAO;
 import model.Estabelecimento;
+import model.Produto;
 import spark.Request;
 import spark.Response;
 
@@ -199,7 +201,7 @@ public class EstabelecimentoService
         form += "</body>";
         form += "</html>";
 
-        List<Estabelecimento> mercados = estabelecimentoDAO.getByProduct(idProduct);
+/*        List<Estabelecimento> mercados = estabelecimentoDAO.getByProduct(idProduct);
 
         String js = "";
         js += "let mercados = [";
@@ -210,7 +212,24 @@ public class EstabelecimentoService
         }
         js += "{}];";
 
-		form = form.replaceFirst("VARIAVEL", js);				
+		form = form.replaceFirst("VARIAVEL", js);*/
+        List<Estabelecimento> mercados = estabelecimentoDAO.getByProduct(idProduct);
+        ProdutoDAO prodDAO = new ProdutoDAO();
+        Produto prod = prodDAO.get(idProduct);
+
+        String js = "";
+        js += "let mercados = [";
+        for (Estabelecimento e : mercados) 
+        {
+            js += "{ id: \""+e.getId()+"\", nome: \""+e.getNome()+"\", estado: \""+e.getEstado()+"\", cidade: \""+e.getCidade()
+            +"\", bairro: \""+e.getBairro()+"\", rua: \""+e.getRua()+"\", numero: \""+e.getNumero()+"\", preco: \""+e.getPreco()+"\"},";
+        }
+        js += "{}]; ";
+        js += "let produto = {id: \"idProduct\", nome: \""+prod.getNome()+"\", descricao: \""+prod.getDescricao()+"\", categoria: \""+prod.getCategoria()+"\", marca: \""+prod.getMarca()+"\", unidade: \""+prod.getUnidade()+"\", imagem: \""+prod.getImagem()+"\", preco: \""+prod.getPreco()+"\"}";
+
+		form = form.replaceFirst("VARIAVEL", js);		
+		//return form;
+
     
     }
 

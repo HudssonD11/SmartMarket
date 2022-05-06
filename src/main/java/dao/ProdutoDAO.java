@@ -25,9 +25,9 @@ public class ProdutoDAO extends DAO {
 	public boolean insert(Produto produto) {
 		boolean status = false;
 		try {
-			String sql = "INSERT INTO sm.produto (id, nome, descricao, categoria, marca, unidade, imagem) "
+			String sql = "INSERT INTO sm.produto (id, nome, descricao, categoria, marca, unidade) "
 		               + "VALUES ("+produto.getId()+", '" + produto.getNome() +"', '"+produto.getDescricao() + "', '"
-		               + produto.getCategoria() + "', '" + produto.getMarca() + ", '"+produto.getUnidade()+", '"+produto.getImagem()+"');";
+		               + produto.getCategoria() + "', '" + produto.getMarca() + "', '"+produto.getUnidade()/*+"', '"+produto.getImagem()*/+"');";
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
@@ -129,12 +129,14 @@ public class ProdutoDAO extends DAO {
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 //			String sql = SELECT * FROM produto" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
-            String sql = "SELECT sm.produto.id, sm.produto.nome, sm.produto.descricao, sm.produto.categoria, sm.produto.marca, sm.produto.unidade, sm.produto.imagem, sm.comercializa.preco, sm.estabelecimento.nome as supermercado FROM (SELECT * FROM sm.comercializa WHERE sm.comercializa.estabelecimento = "+idEstab+") AS A JOIN sm.produto ON A.produto = sm.produto.id" /*+  ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));*/;
-			ResultSet rs = st.executeQuery(sql);	           
+//          String sql = "SELECT sm.produto.id, sm.produto.nome, sm.produto.descricao, sm.produto.categoria, sm.produto.marca, sm.produto.unidade, sm.produto.imagem, sm.comercializa.preco, sm.estabelecimento.nome as supermercado FROM (SELECT * FROM sm.comercializa WHERE sm.comercializa.estabelecimento = "+idEstab+") AS A JOIN sm.produto ON A.produto = sm.produto.id" /*+  ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));*/;
+            String sql = "SELECT * FROM (SELECT * FROM sm.comercializa WHERE sm.comercializa.estabelecimento = "+idEstab
+            		+") AS A JOIN sm.produto ON A.produto = sm.produto.id" /*+  ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));*/;			
+            ResultSet rs = st.executeQuery(sql);	           
 	        while(rs.next()) {	            	
 	        	Produto p = new Produto(rs.getInt("id"), rs.getString("nome"), rs.getString("descricao"), rs.getString("categoria"), rs.getString("marca"), rs.getString("unidade"), rs.getString("imagem"));
 	        	p.setPreco(rs.getString("preco"));
-				p.setSupermercado(rs.getString("supermercado"));
+		//		p.setSupermercado(rs.getString("supermercado"));
 	            produtos.add(p);
 	        }
 	        st.close();

@@ -11,7 +11,7 @@ public class Produto
     private String unidade;
 	private String imagem;
 	private String preco;
-	private String supermercado;
+//	private String supermercado;
 	
 	public Produto() 
 	{
@@ -23,7 +23,7 @@ public class Produto
         descricao = "";
 		imagem = "";
 		preco = "";
-		supermercado = "";
+//		supermercado = "";
 	}
 
 	public Produto(int id, String nome, String descricao, String categoria, String marca, String unidade, String imagem) 
@@ -36,7 +36,7 @@ public class Produto
         setDescricao(descricao);
 		setImagem(imagem);
 		preco = "";
-		supermercado = "";
+//		supermercado = "";
 	}		
 
     public String getDescricao() 
@@ -117,7 +117,7 @@ public class Produto
 	{
         this.imagem = imagem;
     }
-
+/*
 	public String getSupermercado() 
 	{
         return supermercado;
@@ -126,5 +126,5 @@ public class Produto
     public void setSupermercado(String supermercado) 
 	{
         this.supermercado = supermercado;
-    }
+    }*/
 }
