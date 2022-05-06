@@ -37,47 +37,78 @@ function mostrarProdutos(produtos) {
     tela.innerHTML = strHtml;
 }
 
-function mostrarProduto(comercializa) {
+function mostrarMercado(mercado, produtos) {
     let tela = document.getElementById('tela');
-
+    alert("Em breve: Exibição da logo do mercado")
     let strhtml = `<div class="col-12 col-sm-12 col-md-12 col-lg-3 comparative">
         <div class="produto">
             <a href="#">
-                <h1>${comercializa[0].nome}</h1>
-                <p>${comercializa[0].categoria}</p>
+                <h1>${mercado.nome}</h1>
+                <p>${mercado.estado} - ${mercado.cidade} - ${mercado.bairro} - ${mercado.rua}, ${mercado.numero}</p>
             </a>
-            <img src="${comercializa[0].imagem}">
+            <img src="${mercado.imagem}">
         </div>
     </div>
-    <div class="col-12 col-sm-12 col-md-12 col-lg-7 linha">`
+    <div class="col-12 col-sm-12 col-md-12 col-lg-7 linha">
+    `;
 
-    for (let i = 0; i < comercializa.length - 1; i++) {
-        strhtml += `<p class="Supermercado">${comercializa[i].supermercado}</p>`
-
+    for(i = 0; i<produtos.length - 1; i++)
+    {
+        strhtml += `<p class="Supermercado">${produtos[i].nome}</p>
+        `;
     }
-
-    strhtml += `</div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-2 linha">`
-    for (let i = 0; i < comercializa.length - 1; i++) {
-        strhtml += `<p class="Supermercado">R$${comercializa[i].preco}</p>`
-
+    strhtml += `</div><div class="col-12 col-sm-12 col-md-12 col-lg-2 linha">`;
+    for(i = 0; i<produtos.length - 1; i++)
+    {
+        strhtml += `<p class="Supermercado">R$${produtos[i].preco}</p>`;
     }
     strhtml += `</div>`;
+    
+        
+//   strhtml += `<div class="col-12 col-sm-12 col-md-12 col-lg-6 publicidade_produtos">
+//                     <img src="#" class="logo">
+//                 </div>
+//                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 publicidade_produtos">
+//                   <h1>${mercado[i].nome}</h1>
+//                   <p>Estamos localizados no endereço: Rua ${mercado[i].rua} - ${mercado[i].numero}, ${mercado[i].bairro}, ${mercado[i].cidade} - ${mercado[i].estado}</p>
+//                 </div>`
     tela.innerHTML = strhtml;
 }
 
-function mostrarProdutosMercado(mercado) {
-    let tela = document.getElementById('descricao');
-    alert("Em breve: Exibição da logo do mercado")
-    let strhtml = ''
+function mostrarProduto(produto, mercados) {
+    let tela = document.getElementById('tela');
+    let strhtml = `<div class="col-12 col-sm-12 col-md-12 col-lg-3 comparative">
+        <div class="produto">
+            <a href="#">
+                <h1>${produto.nome}</h1>
+                <p>${produto.descricao} - ${produto.categoria} - ${produto.marca} - ${produto.unidade}</p>
+            </a>
+            <img src="${produto.imagem}">
+        </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-7 linha">
+    `;
+
+    for(i = 0; i<mercados.length - 1; i++)
+    {
+        strhtml += `<p class="Supermercado">${mercados[i].nome}</p>
+        `;
+    }
+    strhtml += `</div><div class="col-12 col-sm-12 col-md-12 col-lg-2 linha">`;
+    for(i = 0; i<mercados.length - 1; i++)
+    {
+        strhtml += `<p class="Supermercado">R$${mercados[i].preco}</p>`;
+    }
+    strhtml += `</div>`;
     
-    strhtml += `<div class="col-12 col-sm-12 col-md-12 col-lg-6 publicidade_produtos">
-                    <img src="#" class="logo">
-                </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-6 publicidade_produtos">
-                  <h1>${mercado[i].nome}</h1>
-                  <p>Estamos localizados no endereço: Rua ${mercado[i].rua} - ${mercado[i].numero}, ${mercado[i].bairro}, ${mercado[i].cidade} - ${mercado[i].estado}</p>
-                </div>`
+        
+//   strhtml += `<div class="col-12 col-sm-12 col-md-12 col-lg-6 publicidade_produtos">
+//                     <img src="#" class="logo">
+//                 </div>
+//                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 publicidade_produtos">
+//                   <h1>${mercado[i].nome}</h1>
+//                   <p>Estamos localizados no endereço: Rua ${mercado[i].rua} - ${mercado[i].numero}, ${mercado[i].bairro}, ${mercado[i].cidade} - ${mercado[i].estado}</p>
+//                 </div>`
     tela.innerHTML = strhtml;
 }
 

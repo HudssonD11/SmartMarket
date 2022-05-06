@@ -144,7 +144,7 @@ public class ProdutoService {
 		form += "<script> VARIAVEL  </script>";
 		form += "</head>";
 		form += "<!--Menu Superior-->";
-		form += "<body onLoad=\"mostrarProduto(produtos)\">";
+		form += "<body onLoad=\"mostrarMercado(mercado, produtos)\">";
 		form += "<header class=\"container header\">";
 		form += "<nav class=\"navbar navbar-expand-lg navbar-light bg-light menu\">";
 		form += "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSite\">";

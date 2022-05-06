@@ -139,7 +139,7 @@ public class EstabelecimentoService
         form += "</script>";
         form += "</head>";
         form += "<!--Menu Superior-->";
-        form += "<body onLoad=\"mostrarProdutosMercado(mercados)\">";
+        form += "<body onLoad=\"mostrarProduto(produto, mercados)\">";
         form += "<header class=\"container header\">";
         form += "<nav class=\"navbar navbar-expand-lg navbar-light bg-light menu\">";
         form += "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSite\">";
