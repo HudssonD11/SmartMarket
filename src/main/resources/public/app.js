@@ -98,14 +98,6 @@ function mostrarProduto(produto, mercados) {
     }
     strhtml += `</div>`;
     
-        
-//   strhtml += `<div class="col-12 col-sm-12 col-md-12 col-lg-6 publicidade_produtos">
-//                     <img src="#" class="logo">
-//                 </div>
-//                 <div class="col-12 col-sm-12 col-md-12 col-lg-6 publicidade_produtos">
-//                   <h1>${mercado[i].nome}</h1>
-//                   <p>Estamos localizados no endereço: Rua ${mercado[i].rua} - ${mercado[i].numero}, ${mercado[i].bairro}, ${mercado[i].cidade} - ${mercado[i].estado}</p>
-//                 </div>`
     tela.innerHTML = strhtml;
 }
 

@@ -12,7 +12,8 @@ public class Aplicacao {
 	private static EstabelecimentoService EstabService = new EstabelecimentoService();
     private static UsuarioService UserService = new UsuarioService();
     private static ProdutoService ProdService = new ProdutoService();
-	
+	//private static ProdutoService Index = new IndexService();
+
     public static void main(String[] args) {
         port(6789);
         
@@ -23,7 +24,7 @@ public class Aplicacao {
         //get("/produto/:id", (request, response) -> EstabService.get(request, response));
         
         //get("/produto/list/:orderby", (request, response) -> EstabService.getAll(request, response));
-        
+        get("/index", (request, response) -> EstabService.getAll(request, response));
         get("/mercados", (request, response) -> EstabService.getAll(request, response));
         get("/mercados/:idEstab", (request, response) -> ProdService.getByEstab(request, response));
         get("/mercado", (request, response) -> EstabService.getAdd(request, response));
