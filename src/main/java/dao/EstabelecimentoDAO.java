@@ -47,6 +47,23 @@ public class EstabelecimentoDAO extends DAO
         return status;
     }
 
+    public int getLastId() {
+       int lastId = -1;
+        try {
+            Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            String sql = "SELECT MAX(id) FROM sm.estabelecimento;";
+            ResultSet rs = st.executeQuery(sql);
+            if(rs.next()){   
+                lastId = rs.getInt("MAX");
+            }
+            st.close();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+        return lastId;
+    }
+
+
     
     public Estabelecimento get(int id) {
         Estabelecimento estab = null;
@@ -155,25 +172,6 @@ public class EstabelecimentoDAO extends DAO
         return status;
     }
     
-    
-    public Object insert(Request request, Response response) {
-		String nome = request.queryParams("nome");
-
-		String resp = "";
-		
-		Usuario user = new Usuario(cpf, nome, login, senha, email, 0, 'n');
-		
-		if(userDAO.insert(user) == true) {
-            resp = "usuario (" + nome + ") inserido!";
-            response.status(201); // 201 Created
-		} else {
-			resp = "usuario (" + nome + ") não inserido!";
-			response.status(404); // 404 Not found
-		}
-			
-		String html = makeForm();
-		return html;
-	}
 
     public boolean delete(int id) {
         boolean status = false;

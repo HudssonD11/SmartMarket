@@ -56,7 +56,6 @@ public class ProdutoDAO extends DAO {
 		return produto;
 	}
 	
-	
 	public List<Produto> get() {
 		return get("");
 	}
@@ -127,15 +126,15 @@ public class ProdutoDAO extends DAO {
 	
 	private List<Produto> getByEstab(int idEstab, String orderBy) {
 		List<Produto> produtos = new ArrayList<Produto>();
-		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-//			String sql = "SELECT * FROM produto" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
-            String sql = "SELECT * FROM (SELECT * FROM sm.comercializa WHERE sm.comercializa.estabelecimento = "+idEstab+") AS A JOIN sm.produto ON A.produto = sm.produto.id" /*+  ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));*/;
+//			String sql = SELECT * FROM produto" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
+            String sql = "SELECT sm.produto.id, sm.produto.nome, sm.produto.descricao, sm.produto.categoria, sm.produto.marca, sm.produto.unidade, sm.produto.imagem, sm.comercializa.preco, sm.estabelecimento.nome as supermercado FROM (SELECT * FROM sm.comercializa WHERE sm.comercializa.estabelecimento = "+idEstab+") AS A JOIN sm.produto ON A.produto = sm.produto.id" /*+  ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));*/;
 			ResultSet rs = st.executeQuery(sql);	           
 	        while(rs.next()) {	            	
 	        	Produto p = new Produto(rs.getInt("id"), rs.getString("nome"), rs.getString("descricao"), rs.getString("categoria"), rs.getString("marca"), rs.getString("unidade"), rs.getString("imagem"));
 	        	p.setPreco(rs.getString("preco"));
+				p.setSupermercado(rs.getString("supermercado"));
 	            produtos.add(p);
 	        }
 	        st.close();
@@ -177,4 +176,20 @@ public class ProdutoDAO extends DAO {
 		}
 		return status;
 	}
+
+	public int getLastId() {
+		int lastId = -1;
+		 try {
+			 Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			 String sql = "SELECT MAX(id) FROM sm.produto;";
+			 ResultSet rs = st.executeQuery(sql);
+			 if(rs.next()){   
+				 lastId = rs.getInt("MAX");
+			 }
+			 st.close();
+		 } catch (Exception e) {
+			 System.err.println(e.getMessage());
+		 }
+		 return lastId;
+	 }
 }
