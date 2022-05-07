@@ -139,6 +139,40 @@ public class UsuarioDAO extends DAO {
 		}
 		return status;
 	}
+
+	public boolean updateUser(Usuario usuario, String login) {
+		boolean status = false;
+		try {  
+			String sql = "UPDATE sm.usuario SET nome = '"+ usuario.getNome() + "', email = '"+usuario.getEmail()
+            +"', login = '"+ login +"', senha = '"+usuario.getSenha()
+            +"', creditos = "+usuario.getCreditos()+", tipo = '"+usuario.getTipo()+"' WHERE CPF = '" + usuario.getCPF()+"'";
+			PreparedStatement st = conexao.prepareStatement(sql);
+			st.executeUpdate();
+			st.close();
+			status = true;
+		} catch (SQLException u) {  
+			throw new RuntimeException(u);
+		}
+		System.out.println(status);
+		return status;
+	}
+
+	public boolean updateSenha(Usuario usuario, String senha) {
+		boolean status = false;
+		try {  
+			String sql = "UPDATE sm.usuario SET nome = '"+ usuario.getNome() + "', email = '"+usuario.getEmail()
+            +"', login = '"+ usuario.getLogin() +"', senha = '"+ senha
+            +"', creditos = "+usuario.getCreditos()+", tipo = '"+usuario.getTipo()+"' WHERE CPF = '" + usuario.getCPF()+"'";
+			PreparedStatement st = conexao.prepareStatement(sql);
+			st.executeUpdate();
+			st.close();
+			status = true;
+		} catch (SQLException u) {  
+			throw new RuntimeException(u);
+		}
+		System.out.println(status);
+		return status;
+	}
 	
 	
 	public boolean delete(String id) {

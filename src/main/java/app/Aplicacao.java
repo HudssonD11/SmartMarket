@@ -37,7 +37,9 @@ public class Aplicacao {
         get("/login", (request, response) -> UserService.getLogin(request, response));
         post("/login/cadastrar", (request, response) -> UserService.insert(request, response));
 
-        get("/edit", (request, response) -> UserService.getLogin(request, response));
+        get("/edit", (request, response) -> UserService.getEdit(request, response));
+        post("/edit/user", (request, response) -> UserService.getEditUser(request, response));
+        post("/edit/senha", (request, response) -> UserService.getEditSenha(request, response));
         //get("/produto/update/:id", (request, response) -> EstabService.getToUpdate(request, response));
         
         //post("/produto/update/:id", (request, response) -> EstabService.update(request, response));
@@ -47,4 +49,3 @@ public class Aplicacao {
              
     }
 }
-//teste

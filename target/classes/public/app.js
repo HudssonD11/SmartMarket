@@ -136,6 +136,38 @@ function mostrarProdutosMercado(produto) {
     tela.innerHTML = strhtml;
 }
 
+function showTelaEditUser() {
+    user = getUserLS();
+    let tela = document.getElementById('tela4');
+    let tela2 = document.getElementById('tela2');
+    let strhtml = ''
+    let strhtml2 = ''
+
+        strhtml += `
+                        <form action="/edit/user" method="post">
+                        <input type="text" name="username" id="user1" class="form-control" value="${user.login}" class = "edit">
+                        <label for="username">Novo nome de Usuário</label><br>
+                        <input type="text" name="newusername" id="user" class="form-control" placeholder="Novo nome de usuário" class = "edit">
+                        <label for="username">Senha</label><br>
+                        <input type="password" name="password" id="senha" class="form-control" placeholder="Senha">
+                        <input type="submit" value="Alterar Usuário" class="btn btn-primary" id="btn-cad"> </form>   
+                    </div>`
+
+        strhtml2 += `
+                        <h1>Editar Senha</h1>
+                        <form action="/edit/senha" method="post">
+                        <input type="text" name="username" id="user1" class="form-control" value="${user.login}" class = "edit">   
+                        <label for="username">Senha antiga</label><br>
+                        <input type="password" name="oldpassword" id="senhaAntiga" class="form-control" placeholder="Senha">
+                        <label for="password">Nova senha</label><br>
+                        <input type="password" name="password" id="senhaNova" class="form-control" placeholder="Senha">
+                        <input type="submit" value="Alterar Senha" class="btn btn-primary" id="btn-cad"> </form>
+                     </div>`
+
+    tela4.innerHTML = strhtml;
+    tela2.innerHTML = strhtml2;
+}
+
 function setUserLS(user) {
     localStorage.setItem('currentUser', JSON.stringify(user));
 }

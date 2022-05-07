@@ -142,6 +142,9 @@
 #user , #senha, #senhaAntiga, #senhaNova{
     width: 80%;
 }
+#user1{
+    display: none;
+}
 
 .produto img {
     width: 30%;
