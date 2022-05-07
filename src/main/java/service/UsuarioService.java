@@ -36,9 +36,9 @@ public class UsuarioService
         form += "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css\">";
         form += "<script src=\"https://kit.fontawesome.com/c81b80495f.js\" crossorigin=\"anonymous\"></script>";
         form += "<!-- Meu css -->";
-        form += "<script src=\"public/app.js\"></script>";
+        form += "<script src=\"..\\app.js\"></script>";
         form += "<script> SUBSTITUIR </script>";
-        form += "<link rel=\"stylesheet\" href=\"style.css\">";
+        form += "<link rel=\"stylesheet\" href=\"..\\style.css\">";
         form += "</head>";
         form += "<!--Menu Superior-->";
         form += "</body onload=\"logouAgora()\">";
@@ -50,7 +50,7 @@ public class UsuarioService
         form += "<div class=\"collapse navbar-collapse\" id=\"navbarSite\">";
         form += "<ul class=\"navbar-nav mr-auto\">";
 		form += "<li class=\"nav-item name\">";
-		form += "<a class=\"nav-link\" href=\"../Index.html\">SmartMarket</a>";
+		form += "<a class=\"nav-link\" href=\"..\\index.html\">SmartMarket</a>";
 		form += "</li>";
 		form += "<li class=\"nav-item menu_item\">";
 		form += "<a class=\"nav-link\" >|</a>";
@@ -119,8 +119,16 @@ public class UsuarioService
         String subs = "let user = ''; ";
         if(user!=null)
         {
+            
             subs = "let user = {login: \""+user.getLogin()+"\", nome: \""+user.getNome()+"\", creditos: \""+user.getCreditos()+"\", tipo: \""+user.getTipo()+"\", CPF: \""+user.getCPF()+"\"};";
-        }        
+            subs+= "\nsetUserLS(user);";
+            subs +="\nwindow.location.href = \"../index.html\";";
+
+        } 
+        else{
+            subs="alert(\"Login ou senha incorretos tente novamente\")";
+            subs +="\nwindow.location.href = \"../login\";";
+        }       
         form = form.replaceFirst("SUBSTITUIR", subs);
         return form;
     }
@@ -139,9 +147,9 @@ public class UsuarioService
         form += "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css\">";
         form += "<script src=\"https://kit.fontawesome.com/c81b80495f.js\" crossorigin=\"anonymous\"></script>";
         form += "<!-- Meu css -->";
-        form += "<script src=\"public/app.js\"></script>";
+        form += "<script src=\"..\\app.js\"></script>";
         form += "<script> SUBSTITUIR </script>";
-        form += "<link rel=\"stylesheet\" href=\"style.css\">";
+        form += "<link rel=\"stylesheet\" href=\"..\\style.css\">";
         form += "</head>";
         form += "<!--Menu Superior-->";
         form += "</body onload=\"logouAgora()\">";
@@ -153,7 +161,7 @@ public class UsuarioService
         form += "<div class=\"collapse navbar-collapse\" id=\"navbarSite\">";
 		form += "<ul class=\"navbar-nav mr-auto\">";
 		form += "<li class=\"nav-item name\">";
-		form += "<a class=\"nav-link\" href=\"../Index.html\">SmartMarket</a>";
+		form += "<a class=\"nav-link\" href=\"..\\index.html\">SmartMarket</a>";
 		form += "</li>";
 		form += "<li class=\"nav-item menu_item\">";
 		form += "<a class=\"nav-link\" >|</a>";

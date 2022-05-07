@@ -147,7 +147,7 @@ public class ProdutoService {
 		form += "<div class=\"collapse navbar-collapse\" id=\"navbarSite\">";
 		form += "<ul class=\"navbar-nav mr-auto\">";
 		form += "<li class=\"nav-item name\">";
-		form += "<a class=\"nav-link\" href=\"../Index.html\">SmartMarket</a>";
+		form += "<a class=\"nav-link\" href=\"..\\index.html\">SmartMarket</a>";
 		form += "</li>";
 		form += "<li class=\"nav-item menu_item\">";
 		form += "<a class=\"nav-link\" >|</a>";
@@ -247,7 +247,7 @@ public class ProdutoService {
 		form += "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css\">";
 		form += "<script src=\"https://kit.fontawesome.com/c81b80495f.js\" crossorigin=\"anonymous\"></script>";
 		form += "<!-- Meu css -->";
-		form += "<link rel=\"stylesheet\" href=\"../style.css\">";
+		form += "<link rel=\"stylesheet\" href=\"..\\style.css\">";
 		form += "</head>";
 		form += "<!--Menu Superior-->";
 		form += "<header class=\"container header\">";
@@ -258,7 +258,7 @@ public class ProdutoService {
 		form += "<div class=\"collapse navbar-collapse\" id=\"navbarSite\">";
 		form += "<ul class=\"navbar-nav mr-auto\">";
 		form += "<li class=\"nav-item name\">";
-		form += "<a class=\"nav-link\" href=\"../Index.html\">SmartMarket</a>";
+		form += "<a class=\"nav-link\" href=\"..\\index.html\">SmartMarket</a>";
 		form += "</li>";
 		form += "<li class=\"nav-item menu_item\">";
 		form += "<a class=\"nav-link\" >|</a>";
