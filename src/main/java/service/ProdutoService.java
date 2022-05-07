@@ -1,12 +1,6 @@
 package service;
 
-import java.util.Scanner;
 
-import org.slf4j.MarkerFactory;
-
-import java.time.LocalDate;
-import java.io.File;
-import java.time.LocalDateTime;
 import java.util.List;
 import dao.ProdutoDAO;
 import dao.EstabelecimentoDAO;
@@ -60,18 +54,18 @@ public class ProdutoService {
 		form += "<a class=\"nav-link\" >|</a>";
 		form += "</li>";
 		form += "<li class=\"nav-item menu_item\">";
-		form += "<a class=\"nav-link\" href=\"produtos\" method=\"get\">Produtos</a>";
+		form += "<a class=\"nav-link\" href=\"..\\produtos\" method=\"get\">Produtos</a>";
 		form += "</li>";
 		form += "<li class=\"nav-item menu_item\">";
 		form += "<a class=\"nav-link\">|</a>";
 		form += "</li>";
 		form += "<li class=\"nav-item menu_item\">";
-		form += "<a class=\"nav-link\" href=\"mercados\" method=\"get\">Supermercados</a>";
+		form += "<a class=\"nav-link\" href=\"..\\mercados\" method=\"get\">Supermercados</a>";
 		form += "<li class=\"nav-item menu_item\">";
 		form += "<a class=\"nav-link\">|</a>";
 		form += "</li>";
 		form += "<li class=\"nav-item menu_item\">";
-		form += "<a class=\"nav-link\" href=\"login\" method=\"get\">Login</a>";
+		form += "<a class=\"nav-link\" href=\"..\\login\" method=\"get\">Login</a>";
 		form += "</li>";
 		form += "</ul>";
 		form += "</div>";
