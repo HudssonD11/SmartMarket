@@ -4,11 +4,16 @@ function mostrarMercados(mercados) {
 
     for (i = 0; i < mercados.length - 1; i++) {
         strHtml += `<div class="col-12 col-sm-12 col-md-6 col-lg-4">
-        <div class="mercado">
-            <a href="">
+        <div class="mercado noUnderline">
+            <a href="mercados/${mercados[i].id}">
                 <h1>${mercados[i].nome}</h1>
             </a>
+            <hr>
+            <a href="mercados/${mercados[i].id}">
             <img src="${mercados[i].imagem}">
+            </a>
+			<hr>
+            <p style="color: grey;">${mercados[i].cidade} - ${mercados[i].estado}<br>${mercados[i].bairro}</p>
         </div>
     </div> `;
     }
@@ -22,14 +27,14 @@ function mostrarProdutos(produtos) {
     for (i = 0; i < (produtos.length - 1); i++) {
         strHtml +=
             `
-            <div class="col-12 col-sm-12 col-md-6 col-lg-4 box-produto">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-4 box-produto noUnderline">
                 <div class="produto">
-                    <a href="ViewProduct2.html">
+                    <a href="produtos/${produtos[i].id}">
                         <h1>${produtos[i].nome}</h1>
                         <p>${produtos[i].categoria}</p>
-                    </a>
                     <img src="${produtos[i].imagem}">
-                    <a href="ViewProduct2.html"><button type="button" class="btn btn-secondary" id="btn_oferta">Ver Ofertas</button></a>
+                    </a>
+                    <a href="produtos/${produtos[i].id}"><button type="button" class="btn btn-secondary" id="btn_oferta">Ver Ofertas</button></a>
                 </div>
             </div>
             `
@@ -40,7 +45,7 @@ function mostrarProdutos(produtos) {
 function mostrarMercado(mercado, produtos) {
     let tela = document.getElementById('tela');
     let supermercado = document.getElementById('mercado');
-    let str2html = `    
+    let strhtml = `    
     <div class="col-12 col-sm-12 col-md-12 col-lg-6 publicidade_produtos">
                     <img src="${mercado.imagem}" class="logo">
                 </div>
@@ -49,17 +54,18 @@ function mostrarMercado(mercado, produtos) {
                   <p>Estamos localizados no endereço: Rua ${mercado.rua} - ${mercado.numero}, ${mercado.bairro}, ${mercado.cidade} - ${mercado.estado}</p>
     </div>
     `;
-    let strhtml = '';
     for(i = 0; i<produtos.length - 1; i++)
     {
         strhtml += `
         <div class="col-12 col-sm-12 col-md-12 col-lg-4 box-produto">
-        <div class="produto">
-            <a href="#">
+        <div class="produto noUnderline">
+            <a href="/produtos/${produtos[i].id}">
                 <h1>${produtos[i].nome}</h1>
-                <p>${produtos[i].categoria}</p>
             </a>
+                <p>${produtos[i].categoria}</p>
+            <a href="/produtos/${produtos[i].id}">
             <img src="${produtos[i].imagem}">
+            </a>
             <p class="Supermercado">R$${produtos[i].preco}</p>
         </div>
         </div>
@@ -76,19 +82,17 @@ function mostrarProduto(produto, mercados) {
     let tela = document.getElementById('tela');
     let strhtml = `<div class="col-12 col-sm-12 col-md-12 col-lg-3 comparative">
         <div class="produto">
-            <a href="#">
                 <h1>${produto.nome}</h1>
-                <p>${produto.descricao} - ${produto.categoria} - ${produto.marca} - ${produto.unidade}</p>
-            </a>
+                <p>${produto.marca} - ${produto.unidade} <br> categoria: ${produto.categoria} <br> ${produto.descricao}</p>
             <img src="${produto.imagem}">
         </div>
     </div>
-    <div class="col-12 col-sm-12 col-md-12 col-lg-7 linha">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-7 linha noUnderline">
     `;
 
     for(i = 0; i<mercados.length - 1; i++)
     {
-        strhtml += `<p class="Supermercado">${mercados[i].nome}</p>
+        strhtml += `<p class="Supermercado"><a href="../mercados/${mercados[i].id}">${mercados[i].nome}</a></p>
         `;
     }
     strhtml += `</div><div class="col-12 col-sm-12 col-md-12 col-lg-2 linha">`;

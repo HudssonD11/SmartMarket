@@ -37,6 +37,11 @@
     width: 500px;
 }
 
+/* Links */
+.noUnderline a {
+	text-decoration: none !important;
+	color: black;
+}
 
 /* Mercados */
 
@@ -235,6 +240,7 @@
 .logo{
     width: 50%;
 }
+
 
 
 /* Footer Padrão */
