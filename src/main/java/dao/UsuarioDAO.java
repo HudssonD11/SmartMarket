@@ -66,10 +66,13 @@ public class UsuarioDAO extends DAO {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 			String sql = "SELECT * FROM sm.usuario WHERE login='"+username+"' AND senha='"+senha+"'";
 
-			ResultSet rs = st.executeQuery(sql);	
+			ResultSet rs = st.executeQuery(sql);
 	        if(rs.next()){            
 	        	user = new Usuario(rs.getString("CPF"), rs.getString("nome"), rs.getString("login"), rs.getString("senha"), rs.getString("email"), rs.getInt("creditos"), rs.getString("tipo").charAt(0));
 	        }
+			else{
+
+			}
 	        st.close();
 		} catch (Exception e) {
 			System.err.println(e.getMessage());

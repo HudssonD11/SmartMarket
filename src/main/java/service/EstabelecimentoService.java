@@ -47,7 +47,7 @@ public class EstabelecimentoService
         form += "<div class=\"collapse navbar-collapse\" id=\"navbarSite\">";
         form += "<ul class=\"navbar-nav mr-auto\">";
 		form += "<li class=\"nav-item name\">";
-		form += "<a class=\"nav-link\" href=\"../Index.html\">SmartMarket</a>";
+		form += "<a class=\"nav-link\" href=\"..\\index.html\">SmartMarket</a>";
 		form += "</li>";
 		form += "<li class=\"nav-item menu_item\">";
 		form += "<a class=\"nav-link\" >|</a>";
@@ -142,7 +142,7 @@ public class EstabelecimentoService
         form += "<div class=\"collapse navbar-collapse\" id=\"navbarSite\">";
         form += "<ul class=\"navbar-nav mr-auto\">";
 		form += "<li class=\"nav-item name\">";
-		form += "<a class=\"nav-link\" href=\"../Index.html\">SmartMarket</a>";
+		form += "<a class=\"nav-link\" href=\"..\\index.html\">SmartMarket</a>";
 		form += "</li>";
 		form += "<li class=\"nav-item menu_item\">";
 		form += "<a class=\"nav-link\" >|</a>";
@@ -263,7 +263,7 @@ public class EstabelecimentoService
         form +="<div class=\"collapse navbar-collapse\" id=\"navbarSite\">";
         form += "<ul class=\"navbar-nav mr-auto\">";
 		form += "<li class=\"nav-item name\">";
-		form += "<a class=\"nav-link\" href=\"../Index.html\">SmartMarket</a>";
+		form += "<a class=\"nav-link\" href=\"..\\index.html\">SmartMarket</a>";
 		form += "</li>";
 		form += "<li class=\"nav-item menu_item\">";
 		form += "<a class=\"nav-link\" >|</a>";
