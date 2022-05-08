@@ -33,13 +33,15 @@ public class ProdutoService {
 		form += "<!-- Bootstrap CSS -->";
 		form += "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css\">";
 		form += "<script src=\"https://kit.fontawesome.com/c81b80495f.js\" crossorigin=\"anonymous\"></script>";
+		form += "<script src=\"app.js\"></script>";
 		form += "<!-- Meu css -->";
 		form += "<link rel=\"stylesheet\" href=\"..\\style.css\">";
 		form += "<script src = \"..\\app.js\"> </script>";
 		form += "<script> VARIAVEL  </script>";
 		form += "</head>";
 		form += "<!--Menu Superior-->";
-		form += "<body onLoad=\"mostrarProdutos(produtos)\">";
+		form += "<body onLoad=\"isAdmin(true,'../produtos'),mostrarProdutos(produtos)\">";
+        form += "<div id=\"menu\">";
 		form += "<header class=\"container header\">";
 		form += "<nav class=\"navbar navbar-expand-lg navbar-light bg-light menu\">";
 		form += "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSite\">";
@@ -71,6 +73,7 @@ public class ProdutoService {
 		form += "</div>";
 		form += "</nav>";
 		form += "</header>";
+        form += "</div>";
 		form += "<!--1 Bloco com Propagandas-->";
 		form += "<section class=\"row publicidade\">";
 		form += "<div class=\"col-12 col-sm-12 col-md-12 col-lg-12 publicidade_produtos\">";
@@ -126,14 +129,16 @@ public class ProdutoService {
 		form += "<!-- Bootstrap CSS -->";
 		form += "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css\">";
 		form += "<script src=\"https://kit.fontawesome.com/c81b80495f.js\" crossorigin=\"anonymous\"></script>";
+		form += "<script src=\"app.js\"></script>";
 		form += "<!-- Meu css -->";
 		form += "<link rel=\"stylesheet\" href=\"..\\style.css\">";
 		form += "<script src = \"..\\app.js\"> </script>";
 		form += "<script> VARIAVEL  </script>";
 		form += "</head>";
 		form += "<!--Menu Superior-->";
-		form += "<body onLoad=\"mostrarMercado(mercado, produtos)\">";
-		form += "<header class=\"container header\">";
+		form += "<body onLoad=\"isAdmin(true,'../mercados/IDMERCADO'),mostrarMercado(mercado, produtos)\">";
+        form += "<div id=\"menu\">";
+        form += "<header class=\"container header\">";
 		form += "<nav class=\"navbar navbar-expand-lg navbar-light bg-light menu\">";
 		form += "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSite\">";
 		form += "<span class=\"navbar-toggler-icon\"></span>";
@@ -164,7 +169,8 @@ public class ProdutoService {
 		form += "</div>";
 		form += "</nav>";
 		form += "</header>";
-		form += "<!--1 Bloco com Propagandas-->";
+        form += "</div>";
+        form += "<!--1 Bloco com Propagandas-->";
 		form += "<section class=\"row publicidade\"  id=\"mercado\">";
 
 		form += "</section>";
@@ -204,6 +210,8 @@ public class ProdutoService {
 		js += "{}]; ";
 		js += "let mercado = {id: \""+idEstab+"\", nome: \""+estab.getNome()+"\", estado: \""+estab.getEstado()+"\", cidade: \""+estab.getCidade()+"\", bairro: \""+estab.getBairro()+"\", rua: \""+estab.getRua()+"\", numero: \""+estab.getNumero()+"\", imagem: \""+estab.getLogo()+"\"};";
 		form = form.replaceFirst("VARIAVEL", js);
+		js = "" + estab.getId();
+		form = form.replaceFirst("IDMERCADO", js);
 		return form;
 
 	}
@@ -240,10 +248,13 @@ public class ProdutoService {
 		form += "<!-- Bootstrap CSS -->";
 		form += "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css\">";
 		form += "<script src=\"https://kit.fontawesome.com/c81b80495f.js\" crossorigin=\"anonymous\"></script>";
+		form += "<script src=\"app.js\"></script>";
 		form += "<!-- Meu css -->";
 		form += "<link rel=\"stylesheet\" href=\"..\\style.css\">";
 		form += "</head>";
 		form += "<!--Menu Superior-->";
+        form += "<body onload=\"isAdmin(true,null)\">";
+        form += "<div id=\"menu\">";
 		form += "<header class=\"container header\">";
 		form += "<nav class=\"navbar navbar-expand-lg navbar-light bg-light menu\">";
 		form += "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSite\">";
@@ -275,6 +286,7 @@ public class ProdutoService {
 		form += "</div>";
 		form += "</nav>";
 		form += "</header>";
+        form += "</div>";
 		form += "<h1 id=\"insert\">Adicionar Produto</h1>";
 		form += "<section class=\"row card_insert\" id=\"tela\">";
 		form += "<div class=\"col-12 col-sm-12 col-md-6 col-lg-12\">";
@@ -302,6 +314,7 @@ public class ProdutoService {
 		form += "</div>";
 		form += "</footer>";
 		form += "</main>";
+        form += "</body>";
 		form += "</html>";
 		
 

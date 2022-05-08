@@ -136,6 +136,78 @@ function mostrarProdutosMercado(produto) {
     tela.innerHTML = strhtml;
 }
 
+function isAdmin(bool, pagina)
+{
+	let tela = document.getElementById('menu');
+	let strmenu = `
+	<header class="container header">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light menu">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSite">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item name">
+                    <a class="nav-link" href="REPLACEindex.html">SmartMarket</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" >|</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" href="REPLACEprodutos" method="get">Produtos</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link">|</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" href="REPLACEmercados" method="get">Supermercados</a>
+                <li class="nav-item menu_item">
+                    <a class="nav-link">|</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" href="REPLACElogin" method="get">Login</a>
+                </li>`;
+	let user = getUserLS();
+	if(user && user.tipo=='a')
+	{
+		strmenu += `
+		            <li class="nav-item menu_item">
+                    <a class="nav-link">|</a>
+                	</li>
+				<li class="nav-item menu_item">
+                    <a class="nav-link" href="REPLACEmercado">AdcMarket</a>
+                </li>`;		
+		strmenu += `
+				            <li class="nav-item menu_item">
+                    <a class="nav-link">|</a>
+                	</li>
+<li class="nav-item menu_item">
+                    <a class="nav-link" href="REPLACEproduto">AdcProduct</a>
+                </li>`;		
+	}
+                strmenu += `
+					            <li class="nav-item menu_item">
+                    <a class="nav-link">|</a>
+                	</li>
+<li class="nav-item menu_item">
+                    <a class="nav-link" onClick="logOut('${pagina}')" href="#">LogOut</a>
+                </li>
+				            </ul>
+				        </div>
+				    </nav>
+				</header>
+				`;
+	if(bool)
+	{
+		strmenu = strmenu.replaceAll('REPLACE', '../');		
+	} else 
+	{
+		strmenu = strmenu.replaceAll('REPLACE', '');		
+	}
+	tela.innerHTML = strmenu;
+}
+
 function setUserLS(user) {
     localStorage.setItem('currentUser', JSON.stringify(user));
 }
@@ -145,12 +217,14 @@ function getUserLS() {
     return JSON.parse(user);
 }
 
-function logouAgora(user) {
-    if (user.length > 0) {
-        setUserLS(user);
-        alert('logado');
-        //idAdmin();
-    } else {
-        alert('nao logado');
-    }
+function logOut(pagina)
+{
+	setUserLS(null);
+	if(pagina)
+	{
+		window.location.href = pagina;
+	} else
+	{
+		window.location.href = "index.html";		
+	}
 }

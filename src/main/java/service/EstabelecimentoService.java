@@ -38,7 +38,8 @@ public class EstabelecimentoService
         form += "</script>";
         form += "</head>";
         form += "<!--Menu Superior-->";
-        form += "<body onLoad=\"mostrarMercados(mercados)\">";
+        form += "<body onLoad=\"isAdmin(true,'../mercados'),mostrarMercados(mercados)\">";
+        form += "<div id=\"menu\">";
         form += "<header class=\"container header\">";
         form += "<nav class=\"navbar navbar-expand-lg navbar-light bg-light menu\">";
         form += "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSite\">";
@@ -70,6 +71,7 @@ public class EstabelecimentoService
         form += "</div>";
         form += "</nav>";
         form += "</header>";
+        form += "</div>";
         form += "<!--1 Bloco com Propagandas-->";
         form += "<section class=\"row publicidade\">";
         form += "<div class=\"col-12 col-sm-12 col-md-12 col-lg-12 publicidade_produtos\">";
@@ -133,7 +135,8 @@ public class EstabelecimentoService
         form += "</script>";
         form += "</head>";
         form += "<!--Menu Superior-->";
-        form += "<body onLoad=\"mostrarProduto(produto, mercados)\">";
+        form += "<body onLoad=\"isAdmin(true,'../produto/IDPRODUTO'),mostrarProduto(produto, mercados)\">";
+        form += "<div id=\"menu\">";
         form += "<header class=\"container header\">";
         form += "<nav class=\"navbar navbar-expand-lg navbar-light bg-light menu\">";
         form += "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSite\">";
@@ -165,6 +168,7 @@ public class EstabelecimentoService
         form += "</div>";
         form += "</nav>";
         form += "</header>";
+        form += "</div>";
         form += "<!--1 Bloco com Propagandas-->";
         form += "<section class=\"row publicidade\">";
         form += "<div id=\"descricao\">";
@@ -212,7 +216,9 @@ public class EstabelecimentoService
         js += "{}]; ";
         js += "let produto = {id: \"idProduct\", nome: \""+prod.getNome()+"\", descricao: \""+prod.getDescricao()+"\", categoria: \""+prod.getCategoria()+"\", marca: \""+prod.getMarca()+"\", unidade: \""+prod.getUnidade()+"\", imagem: \""+prod.getImagem()+"\", preco: \""+prod.getPreco()+"\"}";
 
-		form = form.replaceFirst("VARIAVEL", js);		
+		form = form.replaceFirst("VARIAVEL", js);
+		js = "" + prod.getId();
+		form = form.replaceFirst("IDPRODUTO", js);		
 		//return form;
 
     
@@ -251,7 +257,8 @@ public class EstabelecimentoService
 		form += "<script src = \"..\\app.js\"> </script>";
         form +="</head>";
         form +="<!--Menu Superior-->";
-        form +="<body onload=\"\">";
+        form +="<body onload=\"isAdmin(true,null)\">";
+        form += "<div id=\"menu\">";
         form +="<header class=\"container header\">";
         form +="<nav class=\"navbar navbar-expand-lg navbar-light bg-light menu\">";
         form +="<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSite\">";
@@ -283,6 +290,7 @@ public class EstabelecimentoService
         form +="</div>";
         form +="</nav>";
         form +="</header>";
+        form += "</div>";
         form +="<h1 id=\"valid\">Adicionar Mercado</h1>";
         form +="<section class=\"row card_mercado\" id=\"tela\">";
         form +="<div class=\"col-12 col-sm-12 col-md-6 col-lg-12\">"; 

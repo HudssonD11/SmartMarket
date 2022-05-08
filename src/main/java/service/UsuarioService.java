@@ -41,7 +41,8 @@ public class UsuarioService
         form += "<link rel=\"stylesheet\" href=\"..\\style.css\">";
         form += "</head>";
         form += "<!--Menu Superior-->";
-        form += "</body onload=\"logouAgora()\">";
+        form += "<body onload=\"isAdmin(true, '../login')\">";
+        form += "<div id=\"menu\">";
         form += "<header class=\"container header\">";
         form += "<nav class=\"navbar navbar-expand-lg navbar-light bg-light menu\">";
         form += "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSite\">";
@@ -73,6 +74,7 @@ public class UsuarioService
         form += "</div>";
         form += "</nav>";
         form += "</header>";
+        form += "</div>";
         form += "<!--1 Bloco com Propagandas-->";
         form += "<section class=\"row log_cad\">";
         form += "<div class=\"col-12 col-sm-12 col-md-12 col-lg-6 login\">";
@@ -148,11 +150,11 @@ public class UsuarioService
         form += "<script src=\"https://kit.fontawesome.com/c81b80495f.js\" crossorigin=\"anonymous\"></script>";
         form += "<!-- Meu css -->";
         form += "<script src=\"..\\app.js\"></script>";
-        form += "<script> SUBSTITUIR </script>";
         form += "<link rel=\"stylesheet\" href=\"..\\style.css\">";
         form += "</head>";
         form += "<!--Menu Superior-->";
-        form += "</body onload=\"logouAgora()\">";
+        form += "<body onload=\"isAdmin(true, '../login')\">";
+        form += "<div id=\"menu\">";
         form += "<header class=\"container header\">";
         form += "<nav class=\"navbar navbar-expand-lg navbar-light bg-light menu\">";
         form += "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSite\">";
@@ -184,6 +186,7 @@ public class UsuarioService
         form += "</div>";
         form += "</nav>";
         form += "</header>";
+        form += "</div>";
         form += "<!--1 Bloco com Propagandas-->";
         form += "<section class=\"row log_cad\">";
         form += "<div class=\"col-12 col-sm-12 col-md-12 col-lg-6 login\">";
