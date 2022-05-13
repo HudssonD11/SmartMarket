@@ -5,6 +5,7 @@ import model.Usuario;
 import spark.Request;
 import spark.Response;
 
+
 public class UsuarioService {
     private UsuarioDAO userDAO = new UsuarioDAO();
     private String form;
@@ -329,10 +330,9 @@ public class UsuarioService {
         String login = request.queryParams("login");
         String senha = request.queryParams("senha");
         String cpf = request.queryParams("cpf");
-
         String resp = "";
 
-        Usuario user = new Usuario(cpf, nome, login, senha, email, 0, 'n');
+        Usuario user = new Usuario(cpf, nome, login, senha, email, 'n');
 
         if (userDAO.insert(user) == true) {
             resp = "usuario (" + nome + ") inserido!";

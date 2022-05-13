@@ -54,8 +54,7 @@ function mostrarMercado(mercado, produtos) {
                   <p>Estamos localizados no endereço: Rua ${mercado.rua} - ${mercado.numero}, ${mercado.bairro}, ${mercado.cidade} - ${mercado.estado}</p>
     </div>
     `;
-    for(i = 0; i<produtos.length - 1; i++)
-    {
+    for (i = 0; i < produtos.length - 1; i++) {
         strhtml += `
         <div class="col-12 col-sm-12 col-md-12 col-lg-4 box-produto">
         <div class="produto noUnderline">
@@ -90,18 +89,16 @@ function mostrarProduto(produto, mercados) {
     <div class="col-12 col-sm-12 col-md-12 col-lg-7 linha noUnderline">
     `;
 
-    for(i = 0; i<mercados.length - 1; i++)
-    {
+    for (i = 0; i < mercados.length - 1; i++) {
         strhtml += `<p class="Supermercado"><a href="../mercados/${mercados[i].id}">${mercados[i].nome}</a></p>
         `;
     }
     strhtml += `</div><div class="col-12 col-sm-12 col-md-12 col-lg-2 linha">`;
-    for(i = 0; i<mercados.length - 1; i++)
-    {
+    for (i = 0; i < mercados.length - 1; i++) {
         strhtml += `<p class="Supermercado">R$${mercados[i].preco}</p>`;
     }
     strhtml += `</div>`;
-    
+
     tela.innerHTML = strhtml;
 }
 
@@ -110,7 +107,7 @@ function mostrarProdutosMercado(produto) {
     let descricao = document.getElementById('descricao');
     alert("Em breve logo do mercado")
     let strhtml2 = ''
-    
+
     strhtml2 += `<div class="col-12 col-sm-12 col-md-12 col-lg-6 publicidade_produtos">
                     <img src="#" class="logo">
                 </div>
@@ -143,7 +140,7 @@ function showTelaEditUser() {
     let strhtml = ''
     let strhtml2 = ''
 
-        strhtml += `
+    strhtml += `
                         <form action="/edit/user" method="post">
                         <input type="text" name="username" id="user1" class="form-control" value="${user.login}" class = "edit">
                         <label for="username">Novo nome de Usuário</label><br>
@@ -153,7 +150,7 @@ function showTelaEditUser() {
                         <input type="submit" value="Alterar Usuário" class="btn btn-primary" id="btn-cad"> </form>   
                     </div>`
 
-        strhtml2 += `
+    strhtml2 += `
                         <h1>Editar Senha</h1>
                         <form action="/edit/senha" method="post">
                         <input type="text" name="username" id="user1" class="form-control" value="${user.login}" class = "edit">   
@@ -168,10 +165,9 @@ function showTelaEditUser() {
     tela2.innerHTML = strhtml2;
 }
 
-function isAdmin(bool, pagina)
-{
-	let tela = document.getElementById('menu');
-	let strmenu = `
+function isAdmin(bool, pagina) {
+    let tela = document.getElementById('menu');
+    let strmenu = `
 	<header class="container header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light menu">
 
@@ -200,44 +196,47 @@ function isAdmin(bool, pagina)
                 <li class="nav-item menu_item">
                     <a class="nav-link" href="REPLACElogin" method="get">Login</a>
                 </li>`;
-	let user = getUserLS();
-	if(user && user.tipo=='a')
-	{
-		strmenu += `
+    let user = getUserLS();
+    if (user && user.tipo == 'a') {
+        strmenu += `
 		            <li class="nav-item menu_item">
-                    <a class="nav-link">|</a>
+                        <a class="nav-link">|</a>
                 	</li>
+				    <li class="nav-item menu_item">
+                        <a class="nav-link" href="REPLACEmercado">AdcMarket</a>
+                    </li>`;
+        strmenu += `
+				    <li class="nav-item menu_item">
+                        <a class="nav-link">|</a>
+                	</li>
+                    <li class="nav-item menu_item">
+                        <a class="nav-link" href="REPLACEproduto">AdcProduct</a>
+                    </li>`;
+    }
+    strmenu += `
 				<li class="nav-item menu_item">
-                    <a class="nav-link" href="REPLACEmercado">AdcMarket</a>
-                </li>`;		
-		strmenu += `
-				            <li class="nav-item menu_item">
+                    <a class="nav-link">|</a>
+                </li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" onClick="logOut('${pagina}')" href="index.html">LogOut</a>
+                </li>
+                <li class="nav-item menu_item">
                     <a class="nav-link">|</a>
                 	</li>
-<li class="nav-item menu_item">
-                    <a class="nav-link" href="REPLACEproduto">AdcProduct</a>
-                </li>`;		
-	}
-                strmenu += `
-					            <li class="nav-item menu_item">
-                    <a class="nav-link">|</a>
-                	</li>
-<li class="nav-item menu_item">
-                    <a class="nav-link" onClick="logOut('${pagina}')" href="#">LogOut</a>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" href="edit" method="get">${user.login}</a>
                 </li>
 				            </ul>
 				        </div>
 				    </nav>
 				</header>
 				`;
-	if(bool)
-	{
-		strmenu = strmenu.replaceAll('REPLACE', '../');		
-	} else 
-	{
-		strmenu = strmenu.replaceAll('REPLACE', '');		
-	}
-	tela.innerHTML = strmenu;
+    if (bool) {
+        strmenu = strmenu.replaceAll('REPLACE', '../');
+    } else {
+        strmenu = strmenu.replaceAll('REPLACE', '');
+    }
+    tela.innerHTML = strmenu;
 }
 
 function setUserLS(user) {
@@ -249,14 +248,11 @@ function getUserLS() {
     return JSON.parse(user);
 }
 
-function logOut(pagina)
-{
-	setUserLS(null);
-	if(pagina)
-	{
-		window.location.href = pagina;
-	} else
-	{
-		window.location.href = "index.html";		
-	}
+function logOut(pagina) {
+    setUserLS(null);
+    if (pagina) {
+        window.location.href = pagina;
+    } else {
+        window.location.href = "index.html";
+    }
 }

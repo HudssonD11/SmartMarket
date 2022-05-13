@@ -61,7 +61,7 @@ public class UsuarioDAO extends DAO {
 
 	public Usuario getByLogin(String username, String senha) {
 		Usuario user = null;
-		
+		senha = user.encryptPassword(senha);
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 			String sql = "SELECT * FROM sm.usuario WHERE login='"+username+"' AND senha='"+senha+"'";
@@ -142,6 +142,7 @@ public class UsuarioDAO extends DAO {
 
 	public boolean updateUser(Usuario usuario, String login) {
 		boolean status = false;
+		System.out.println(usuario.getSenha());
 		try {  
 			String sql = "UPDATE sm.usuario SET nome = '"+ usuario.getNome() + "', email = '"+usuario.getEmail()
             +"', login = '"+ login +"', senha = '"+usuario.getSenha()
@@ -158,6 +159,7 @@ public class UsuarioDAO extends DAO {
 	}
 
 	public boolean updateSenha(Usuario usuario, String senha) {
+		senha = usuario.encryptPassword(senha);
 		boolean status = false;
 		try {  
 			String sql = "UPDATE sm.usuario SET nome = '"+ usuario.getNome() + "', email = '"+usuario.getEmail()

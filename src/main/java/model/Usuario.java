@@ -1,5 +1,7 @@
 package model;
-
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 public class Usuario 
     {
         private String CPF;
@@ -21,6 +23,17 @@ public class Usuario
             tipo = '-';
 
         }
+        
+        public Usuario(String CPF, String nome, String login, String senha, String email, char tipo) 
+        {
+            setEmail(email);
+            setLogin(login);
+            setSenha(encryptPassword(senha));
+            setNome(nome);
+            setTipo(tipo);
+            setCreditos(0);
+            setCPF(CPF);
+        }
 
         public Usuario(String CPF, String nome, String login, String senha, String email, int creditos, char tipo) 
         {
@@ -33,6 +46,32 @@ public class Usuario
             setCPF(CPF);
         }
 
+        
+
+        public static String encryptPassword(String password)
+        {
+            
+            try {
+                
+                MessageDigest md = MessageDigest.getInstance("SHA-1");
+      
+                byte[] messageDigest = md.digest(password.getBytes());
+      
+                BigInteger no = new BigInteger(1, messageDigest);
+      
+                String hashtext = no.toString(16);
+      
+                while (hashtext.length() < 32) {
+                    hashtext = "0" + hashtext;
+                }
+      
+                return hashtext;
+            }
+    
+            catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         public void setEmail(String email) 
         {
@@ -52,6 +91,11 @@ public class Usuario
         public void setSenha(String senha) 
         {
             this.senha = senha;
+        }
+
+        public void setSenhaEncrypt(String senha) 
+        {
+            this.senha = encryptPassword(senha);
         }
 
         public void setCreditos(int creditos) 
