@@ -53,7 +53,7 @@ public class Usuario
             
             try {
                 
-                MessageDigest md = MessageDigest.getInstance("SHA-1");
+                MessageDigest md = MessageDigest.getInstance("SHA-256");
       
                 byte[] messageDigest = md.digest(password.getBytes());
       
