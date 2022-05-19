@@ -193,40 +193,51 @@ function isAdmin(bool, pagina) {
                 <li class="nav-item menu_item">
                     <a class="nav-link">|</a>
                 </li>
-                <li class="nav-item menu_item">
-                    <a class="nav-link" href="REPLACElogin" method="get">Login</a>
-                </li>`;
+					LUGAR1`;
     let user = getUserLS();
-    if (user && user.tipo == 'a') {
-        strmenu += `
-		            <li class="nav-item menu_item">
-                        <a class="nav-link">|</a>
-                	</li>
-				    <li class="nav-item menu_item">
-                        <a class="nav-link" href="REPLACEmercado">AdcMarket</a>
-                    </li>`;
-        strmenu += `
-				    <li class="nav-item menu_item">
-                        <a class="nav-link">|</a>
-                	</li>
-                    <li class="nav-item menu_item">
-                        <a class="nav-link" href="REPLACEproduto">AdcProduct</a>
-                    </li>`;
-    }
-    strmenu += `
-				<li class="nav-item menu_item">
-                    <a class="nav-link">|</a>
-                </li>
-                <li class="nav-item menu_item">
-                    <a class="nav-link" onClick="logOut('${pagina}')" href="index.html">LogOut</a>
-                </li>
-                <li class="nav-item menu_item">
-                    <a class="nav-link">|</a>
-                	</li>
+			
+	if(user && user.nome)
+	{
+        strmenu = strmenu.replaceAll('LUGAR1', ``);
+
+		if(user.tipo == 'a')
+		{
+	        strmenu += `
+					    <li class="nav-item menu_item">
+	                        <a class="nav-link" href="REPLACEmercado">AdcMarket</a>
+	                    </li>
+					    <li class="nav-item menu_item">
+	                        <a class="nav-link">|</a>
+	                	</li>
+	                    <li class="nav-item menu_item">
+	                        <a class="nav-link" href="REPLACEproduto">AdcProduct</a>
+	                    </li>
+	            	    <li class="nav-item menu_item">
+                    		<a class="nav-link">|</a>
+            			</li>
+						`;
+		}
+	    strmenu += `
                 <li class="nav-item menu_item">
                     <a class="nav-link" href="edit" method="get">${user.login}</a>
                 </li>
-				            </ul>
+   			    <li class="nav-item menu_item">
+                    <a class="nav-link">|</a>
+            	</li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" onClick="logOut('${pagina}')" href="index.html">LogOut</a>
+                </li>
+                `;
+		
+	} else
+	{
+		
+        strmenu = strmenu.replaceAll('LUGAR1', `<li class="nav-item menu_item">
+                    <a class="nav-link" href="REPLACElogin" method="get">Login</a>
+                </li>
+					`);
+	}
+		strmenu +=  `</ul>
 				        </div>
 				    </nav>
 				</header>
@@ -245,6 +256,10 @@ function setUserLS(user) {
 
 function getUserLS() {
     let user = localStorage.getItem('currentUser');
+    if(user==null)
+    {
+		user = [];
+	}
     return JSON.parse(user);
 }
 
