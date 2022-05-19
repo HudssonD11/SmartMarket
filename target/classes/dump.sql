@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS SM.usuario (
   CPF CHAR(11) NOT NULL,
   nome VARCHAR(45) NOT NULL,
   login VARCHAR(45) NOT NULL,
-  senha CHAR(45) NOT NULL,
+  senha CHAR(68) NOT NULL,
   creditos SMALLINT ,
   email VARCHAR(45),
   tipo CHAR(1) NOT NULL);
