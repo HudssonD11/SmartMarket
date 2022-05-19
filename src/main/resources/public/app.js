@@ -237,6 +237,18 @@ function isAdmin(bool, pagina) {
                 </li>
 					`);
 	}
+	    strmenu += `
+   			    <li class="nav-item menu_item">
+                    <a class="nav-link">|</a>
+            	</li>
+                <li class="nav-item menu_item">
+                    <a class="nav-link" href="RefreshPrices.html">refreshprices</a>
+                </li>
+   			    <li class="nav-item menu_item">
+                    <a class="nav-link">|</a>
+            	</li>
+                `;
+
 		strmenu +=  `</ul>
 				        </div>
 				    </nav>

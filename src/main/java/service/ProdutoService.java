@@ -1,6 +1,9 @@
 package service;
 
 
+import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
+import java.io.*;
 import java.util.List;
 import dao.ProdutoDAO;
 import dao.EstabelecimentoDAO;
@@ -351,4 +354,38 @@ public class ProdutoService {
 		return html;
 	}
 	
+    public Object preco(Request request, Response response) {
+    	System.out.println("PRIMEIRA PARTE");
+    	String mercado = request.queryParams("mercado");
+		String endereco = request.queryParams("endereco");
+        String foto = request.queryParams("foto");
+        System.out.println("PRIMEIRA PARTE");
+    	Tesseract tesseract = new Tesseract();
+    	try {
+            System.out.println("SEGUNDA PARTE");
+    		
+    		tesseract.setDatapath("/home/hudsson/Downloads/Tess4J/tessdata");
+    		
+    		// the path of your tess data folder
+    		// inside the extracted file
+    		String text
+    		= tesseract.doOCR(new File("../resources/'"+foto+"'"));
+            System.out.println("TERCEIRA PARTE");
+
+    		// path of your image file
+    		System.out.print(text+"\n\n\n");
+
+//    		text = tesseract.doOCR(new File("src/main/resources/aa1.jpg"));
+    		
+    		// path of your image file
+  //  		System.out.print(text);
+}
+    	catch (TesseractException e) {
+    		e.printStackTrace();
+    	}
+
+					
+		String html = makeFormProduto();
+		return html;
+	}
 }

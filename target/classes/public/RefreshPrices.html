@@ -60,18 +60,19 @@
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 refresh">
         <h1>Atualização de Preços</h1>
         <div class="bloco">
-
+<form action="ocr" method="post">
             <label for="username">Estabelecimento:</label><br>
-            <input type="text" name="username" id="box_refresh" class="form-control" placeholder="Nome do Supermercado">
+            <input type="text" name="mercado" id="box_refresh" class="form-control" placeholder="Nome do Supermercado">
 
             <label for="password">Endereço</label><br>
-            <input type="password" name="password" id="box_refresh" class="form-control" placeholder="Endereço do Supermercado">
+            <input type="text" name="endereco" id="box_refresh" class="form-control" placeholder="Endereço do Supermercado">
 
             <input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
-            <input type="file" class="btn_arquivo"/>
-
-            <button type="button" class="btn btn-primary" id="btn-send">Enviar</button>
-
+            <input type="file" name="foto" class="btn_arquivo"/>
+			<br>
+			<br>
+            <input type="submit" value="Enviar" class="btn btn-primary" id="btn-send"/>
+</form>
 
 </section>
 <footer class="container footer">
