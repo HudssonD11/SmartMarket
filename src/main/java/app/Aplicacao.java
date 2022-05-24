@@ -31,7 +31,7 @@ public class Aplicacao {
         
         staticFiles.location("/public");
 
-        File uploadDir = new File("upload");
+        File uploadDir = new File("src/main/resources/notasFiscais");
         uploadDir.mkdir();
         
         post("/ocr", (req, res) -> {            
@@ -78,10 +78,15 @@ public class Aplicacao {
              
     }
     
-    private static void logInfo(Request req, Path tempFile) throws IOException, ServletException {
-        System.out.println("Uploaded file '" + getFileName(req.raw().getPart("uploaded_file")) + "' saved as '" + tempFile.toAbsolutePath() + "'");
+    private static String logInfo(Request req, Path tempFile) throws IOException, ServletException {
+        String nome = tempFile.toAbsolutePath() + "";
+        return nome;
     }
 
+/*    private static void logInfo(Request req, Path tempFile) throws IOException, ServletException {
+        String nome = ("Uploaded file '" + getFileName(req.raw().getPart("uploaded_file")) + "' saved as '" + tempFile.toAbsolutePath() + "'");
+    }
+*/
     private static String getFileName(Part part) {
         for (String cd : part.getHeader("content-disposition").split(";")) {
             if (cd.trim().startsWith("filename")) {
