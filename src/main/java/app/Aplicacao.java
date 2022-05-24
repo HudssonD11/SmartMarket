@@ -1,10 +1,23 @@
 package app;
 
 import static spark.Spark.*;
+
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+
+import javax.servlet.MultipartConfigElement;
+
 import service.EstabelecimentoService;
 import service.ProdutoService;
 import service.UsuarioService;
-import dao.DAO;
+
+import spark.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.io.*;
 
 
 public class Aplicacao {
@@ -17,6 +30,22 @@ public class Aplicacao {
         port(6789);
         
         staticFiles.location("/public");
+
+        File uploadDir = new File("upload");
+        uploadDir.mkdir();
+        
+        post("/ocr", (req, res) -> {            
+        	Path tempFile = Files.createTempFile(uploadDir.toPath(), "", "");
+
+        	req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+
+        	try (InputStream input = req.raw().getPart("uploaded_file").getInputStream()) { // getPart needs to use same "name" as input field in form
+        		Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
+        	}
+
+        	logInfo(req, tempFile);
+        	return "<h1>You uploaded this image:<h1><img src='" + tempFile.getFileName() + "'>";
+        });
         
         //post("/produto/insert", (request, response) -> EstabService.insert(request, response));
 
@@ -48,4 +77,18 @@ public class Aplicacao {
 
              
     }
+    
+    private static void logInfo(Request req, Path tempFile) throws IOException, ServletException {
+        System.out.println("Uploaded file '" + getFileName(req.raw().getPart("uploaded_file")) + "' saved as '" + tempFile.toAbsolutePath() + "'");
+    }
+
+    private static String getFileName(Part part) {
+        for (String cd : part.getHeader("content-disposition").split(";")) {
+            if (cd.trim().startsWith("filename")) {
+                return cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return null;
+    }
+
 }
