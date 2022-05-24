@@ -186,6 +186,9 @@ function isAdmin(bool, pagina) {
                     <a class="nav-link" href="REPLACEprodutos" method="get">Produtos</a>
                 </li>
                 <li class="nav-item menu_item">
+                    <a class="nav-link" href="REPLACERefreshPrices.html" method="get">Refresh</a>
+                </li>
+                <li class="nav-item menu_item">
                     <a class="nav-link">|</a>
                 </li>
                 <li class="nav-item menu_item">

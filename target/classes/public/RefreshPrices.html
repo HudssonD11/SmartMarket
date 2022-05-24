@@ -12,11 +12,13 @@
     <script src="https://kit.fontawesome.com/c81b80495f.js" crossorigin="anonymous"></script>
     <!-- Meu css -->
     <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
 
 </head>
 
 <!--Menu Superior-->
-
+<body onload="isAdmin(false, 'index.html')")>
+<div id="menu">
 <header class="container header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light menu">
 
@@ -55,6 +57,7 @@
         </div>
     </nav>
 </header>
+</div>
 <!--1 Bloco com Propagandas-->
 <section class="row atualizar_preco">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 refresh">
@@ -62,17 +65,17 @@
         <div class="bloco">
 		<form action="ocr" method="post" enctype="multipart/form-data">
 
-            <label for="username">Estabelecimento:</label><br>
-            <input type="text" name="username" id="box_refresh" class="form-control" placeholder="Nome do Supermercado">
+            <label for="mercado">Estabelecimento:</label><br>
+            <input type="text" name="mercado" id="box_refresh" class="form-control" placeholder="Nome do Supermercado">
 
-            <label for="password">Endereço</label><br>
-            <input type="password" name="password" id="box_refresh" class="form-control" placeholder="Endereço do Supermercado">
+            <label for="endereco">Endereço</label><br>
+            <input type="text" name="endereco" id="box_refresh" class="form-control" placeholder="Endereço do Supermercado">
 
             <input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
             <input type="file" name="uploaded_file" class="btn_arquivo"/>
 
             <button type="submit" class="btn btn-primary" id="btn-send">Enviar</button>
-		</form>>
+		</form>
 
 </section>
 <footer class="container footer">
@@ -84,5 +87,5 @@
     </div>
 </footer>
 </main>
-
+</body>
 </html>

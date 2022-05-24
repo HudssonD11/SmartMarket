@@ -44,7 +44,16 @@ public class Aplicacao {
         	}
 
         	logInfo(req, tempFile);
-        	return "<h1>You uploaded this image:<h1><img src='" + tempFile.getFileName() + "'>";
+//        	return "<h1>You uploaded this image:<h1><img src='" + tempFile.getFileName() + "'>";
+        	return ("<html>"
+        			+ "<head>"
+        			+ "	<title>Carregando</title>"
+        			+ "	<head>"
+        			+ "	<meta http-equiv=\"refresh\" content=1;url=\"/RefreshPrices.html\"></head>"
+        			+ "	<meta content=\"text/html; charset = UTF-8\" http-equiv=\"content-type\">"
+        			+ "<body>"
+        			+ "</body>"
+        			+ "</html>");
         });
         
         //post("/produto/insert", (request, response) -> EstabService.insert(request, response));
