@@ -43,7 +43,18 @@ public class Aplicacao {
         		Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
         	}
 
-        	logInfo(req, tempFile);
+        	String nome = logInfo(req, tempFile);
+        	System.out.println(nome);
+        	
+        	try 
+        	{
+        		Runtime run = Runtime.getRuntime();
+        		String comando = "./callOcr "+nome;
+        		run.exec(comando);
+        	} catch(Exception e)
+        	{
+        		e.getMessage();
+        	}
 //        	return "<h1>You uploaded this image:<h1><img src='" + tempFile.getFileName() + "'>";
         	return ("<html>"
         			+ "<head>"
