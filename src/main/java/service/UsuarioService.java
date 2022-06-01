@@ -1,6 +1,10 @@
 package service;
 
+import java.util.List;
+
+import dao.EstabelecimentoDAO;
 import dao.UsuarioDAO;
+import model.Estabelecimento;
 import model.Usuario;
 import spark.Request;
 import spark.Response;
@@ -139,7 +143,7 @@ public class UsuarioService {
         form += "<script src=\"https://kit.fontawesome.com/c81b80495f.js\" crossorigin=\"anonymous\"></script>";
         form += "<!-- Meu css -->";
         form += "<script src=\"..\\app.js\"></script>";
-        form += "<script> setUserLS(null); \nSUBSTITUIR </script>";
+        form += "<script> setUserLS(null); SUBSTITUIR setMercadosLS(mercados);</script>";
         form += "<link rel=\"stylesheet\" href=\"..\\style.css\">";
         form += "</head>";
         form += "<!--Menu Superior-->";
@@ -218,6 +222,21 @@ public class UsuarioService {
         form += "</main>";
         form += "</body>";
         form += "</html>";
+        
+        EstabelecimentoDAO estab = new EstabelecimentoDAO();
+        List <Estabelecimento> mercados = estab.get();
+        
+        String js = "";
+        js += "let mercados = [";
+        for (Estabelecimento e : mercados) 
+        {
+            js += "{ id: \""+e.getId()+"\", nome: \""+e.getNome()+"\", estado: \""+e.getEstado()+"\", cidade: \""+e.getCidade()
+            +"\", bairro: \""+e.getBairro()+"\", rua: \""+e.getRua()+"\", numero: \""+e.getNumero()+"\", imagem: \""+e.getLogo()+"\"},";
+        }
+        js += "{}];";
+
+		form = form.replaceFirst("SUBSTITUIR", js);				
+        
         return form;
     }
 

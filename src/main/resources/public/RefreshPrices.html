@@ -17,7 +17,7 @@
 </head>
 
 <!--Menu Superior-->
-<body onload="isAdmin(false, 'index.html')")>
+<body onload="isAdmin(false, 'index.html'), dropdownMercados()")>
 <div id="menu">
 <header class="container header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light menu">
@@ -62,20 +62,21 @@
 <section class="row atualizar_preco">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 refresh">
         <h1>Atualização de Preços</h1>
-        <div class="bloco">
+        <div class="bloco" id="dropdownMercados">
 		<form action="ocr" method="post" enctype="multipart/form-data">
 
             <label for="mercado">Estabelecimento:</label><br>
-            <input type="text" name="mercado" id="box_refresh" class="form-control" placeholder="Nome do Supermercado">
-
-            <label for="endereco">Endereço</label><br>
-            <input type="text" name="endereco" id="box_refresh" class="form-control" placeholder="Endereço do Supermercado">
+            <select name="mercado">
+				<option value="1">nome endereço</option>
+            </select>
 
             <input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
             <input type="file" name="uploaded_file" class="btn_arquivo"/>
 
             <button type="submit" class="btn btn-primary" id="btn-send">Enviar</button>
 		</form>
+		</div>
+	</div>
 
 </section>
 <footer class="container footer">

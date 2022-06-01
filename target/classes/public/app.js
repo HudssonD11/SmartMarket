@@ -274,3 +274,49 @@ function logOut(pagina) {
         window.location.href = "index.html";
     }
 }
+
+function setMercadosLS(mercados)
+{
+	localStorage.setItem('mercados', JSON.stringify(mercados));
+}
+
+function getMercadosLS()
+{
+	let mercados = localStorage.getItem('mercados');
+	if(mercados==null)
+	{
+		mercados = [];
+	} 
+	return JSON.parse(mercados);
+}
+
+function dropdownMercados()
+{
+	let mercados = getMercadosLS();
+	let tela = document.getElementById('dropdownMercados');
+	
+	let code = `<h1>Atualização de Preços</h1>
+        <div class="bloco" id="dropdownMercados">
+		<form action="ocr" method="post" enctype="multipart/form-data">
+            <label for="mercado">Estabelecimento:</label><br>
+            <select name="mercado">
+`
+	for(i=0; i<mercados.length - 1; i++)
+	{
+		code += `<option value="${mercados[i].id}">${mercados[i].nome} - ${mercados[i].bairro} - ${mercados[i].cidade} - ${mercados[i].estado}</option>
+`;
+	}
+
+		code += `</select>
+			<br><br>
+            <input type="hidden" name="MAX_FILE_SIZE" value="4194304" />
+            <input type="file" name="uploaded_file" class="btn_arquivo"/>
+
+            <button type="submit" class="btn btn-primary" id="btn-send">Enviar</button>
+		</form>`;
+		
+		tela.innerHTML = code;
+}
+
+
+

@@ -44,12 +44,12 @@ public class Aplicacao {
         	}
 
         	String nome = logInfo(req, tempFile);
-        	System.out.println(nome);
+        	int idMercado = Integer.parseInt(req.queryParams("mercado")); 
         	
         	try 
         	{
         		Runtime run = Runtime.getRuntime();
-        		String comando = "./callOcr "+nome;
+        		String comando = "./callOcr "+nome+" "+idMercado;
         		run.exec(comando);
         	} catch(Exception e)
         	{
