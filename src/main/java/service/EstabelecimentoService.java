@@ -38,7 +38,7 @@ public class EstabelecimentoService
         form += "</script>";
         form += "</head>";
         form += "<!--Menu Superior-->";
-        form += "<body onLoad=\"isAdmin(true,'../mercados'),mostrarMercados(mercados)\">";
+        form += "<body onLoad=\"isAdmin(true,'../mercados'),mostrarMercados(mercados), setMercadosLS(mercados)\">";
         form += "<div id=\"menu\">";
         form += "<header class=\"container header\">";
         form += "<nav class=\"navbar navbar-expand-lg navbar-light bg-light menu\">";
@@ -80,7 +80,7 @@ public class EstabelecimentoService
         form += "</section>";
         form += "<section class=\"row search\">";
         form += "<hr>";
-        form += "<div class=\"text-center\"><input oninput=\"\" id=\"pesquisaMercado\" placeholder=\"Pesquisar Mercado\" type=\"text\"></div>";
+        form += "<div class=\"text-center\"><input oninput=\"filtraMercado()\" id=\"pesquisaMercado\" placeholder=\"Pesquisar Mercado\" type=\"text\"></div>";
         form += "<hr>";
         form += "</section>";
         form += "<div class=\"row card_mercado\" id=\"tela\">";
@@ -171,6 +171,9 @@ public class EstabelecimentoService
         form += "</div>";
         form += "<!--1 Bloco com Propagandas-->";
         form += "<section class=\"row publicidade\">";
+        form += "<div class=\"col-12 col-sm-12 col-md-12 col-lg-12 publicidade_produtos\">";
+        form += "<h1>Propaganda</h1>";
+        form += "</div>";
         form += "<div id=\"descricao\">";
         //aqui fica a descricao
         form += "</div>";
@@ -296,17 +299,17 @@ public class EstabelecimentoService
         form +="<div class=\"col-12 col-sm-12 col-md-6 col-lg-12\">"; 
         form += "<form action=\"mercado/adicionar\" method=\"post\">";  
         form +="<label for=\"username\">Nome</label><br>";
-        form +="<input type=\"text\" name=\"nome\" id=\"user\" class=\"form-control\" placeholder=\"Nome do mercado\">";
+        form +="<input type=\"text\" name=\"nome\" id=\"user\" class=\"form-control\" placeholder=\"Nome do mercado\" required>";
         form +="<label for=\"username\">Estado</label><br>";
-        form +="<input type=\"text\" name=\"estado\" id=\"user\" class=\"form-control\" placeholder=\"Estado do mercado\">";
+        form +="<input type=\"text\" name=\"estado\" id=\"user\" class=\"form-control\" placeholder=\"Estado do mercado\" required>";
         form +="<label for=\"username\">Cidade</label><br>";
-        form +="<input type=\"text\" name=\"cidade\" id=\"user\" class=\"form-control\" placeholder=\"Cidade do mercado\">";
+        form +="<input type=\"text\" name=\"cidade\" id=\"user\" class=\"form-control\" placeholder=\"Cidade do mercado\" required>";
         form +="<label for=\"username\">Bairro</label><br>";
-        form +="<input type=\"text\" name=\"bairro\" id=\"user\" class=\"form-control\" placeholder=\"Bairro do mercado\">";
+        form +="<input type=\"text\" name=\"bairro\" id=\"user\" class=\"form-control\" placeholder=\"Bairro do mercado\" required>";
         form +="<label for=\"username\">Rua</label><br>";
-        form +="<input type=\"text\" name=\"rua\" id=\"user\" class=\"form-control\" placeholder=\"Rua do mercado\">";
+        form +="<input type=\"text\" name=\"rua\" id=\"user\" class=\"form-control\" placeholder=\"Rua do mercado\" required>";
         form +="<label for=\"username\">Número</label><br>";
-        form +="<input type=\"text\" name=\"numero\" id=\"user\" class=\"form-control\" placeholder=\"Número do mercado\">";
+        form +="<input type=\"text\" name=\"numero\" id=\"user\" class=\"form-control\" placeholder=\"Número do mercado\" required>";
         form +="<label for=\"username\">Logo</label><br>";
         form +="<input type=\"text\" name=\"logo\" id=\"user\" class=\"form-control\" placeholder=\"Logo do mercado\">";
         form +="<input type=\"submit\" value=\"Cadastrar\" class=\"btn btn-primary\" id=\"btn-cad\"> </form>";

@@ -40,7 +40,7 @@ public class ProdutoService {
 		form += "<script> VARIAVEL  </script>";
 		form += "</head>";
 		form += "<!--Menu Superior-->";
-		form += "<body onLoad=\"isAdmin(true,'../produtos'),mostrarProdutos(produtos)\">";
+		form += "<body onLoad=\"isAdmin(true,'../produtos'),mostrarProdutos(produtos), setProdLS(produtos)\">";
         form += "<div id=\"menu\">";
 		form += "<header class=\"container header\">";
 		form += "<nav class=\"navbar navbar-expand-lg navbar-light bg-light menu\">";
@@ -83,7 +83,8 @@ public class ProdutoService {
 		// parte de pesquisa de produtos
 		form += "<section class=\"row search\">";
 		form += "<hr>";
-		form += "<div class=\"text-center\"><input oninput=\"\" id=\"pesquisaMercado\" placeholder=\"Pesquisar Produtos\" type=\"text\"></div>";
+		form += "<div class=\"text-center\"><input placeholder=\"Pesquisar produto ou categoria\" id=\"pesquisaMercado\" type=\"text\" oninput=\"filtraProdutos()\" ></div>";
+		//form += "<input placeholder=\"Pesquisar produto ou categoria\" id=\"pesquisaMercado\" type=\"text\" oninput=\"filtraProdutos()\" >";
 		form += "<hr>";
 		form += "</section>";
 		//parte de exibição do produto
@@ -292,13 +293,13 @@ public class ProdutoService {
 		form += "<div class=\"col-12 col-sm-12 col-md-6 col-lg-12\">";
 		form += "<form action=\"produto/adicionar\" method=\"post\" enctype=\"multipart/form-data\">";
 		form += "<label for=\"username\">Produto</label><br>";
-		form += "<input type=\"text\" name=\"nome\" id=\"produto\" class=\"form-control\" placeholder=\"Nome do Produto\">";
+		form += "<input type=\"text\" name=\"nome\" id=\"produto\" class=\"form-control\" placeholder=\"Nome do Produto\" required>";
 		form += "<label for=\"username\">Categoria</label><br>";
-		form += "<input type=\"text\" name=\"categoria\" id=\"categoria\" class=\"form-control\" placeholder=\"Categoria do Produto\">";
+		form += "<input type=\"text\" name=\"categoria\" id=\"categoria\" class=\"form-control\" placeholder=\"Categoria do Produto\" required>";
 		form += "<label for=\"username\">Descrição</label><br>";
 		form += "<input type=\"text\" name=\"descricao\" id=\"categoria\" class=\"form-control\" placeholder=\"Descrição do Produto\">";
 		form += "<label for=\"username\">Marca</label><br>";
-		form += "<input type=\"text\" name=\"marca\" id=\"marca\" class=\"form-control\" placeholder=\"Marca do Produto\">";
+		form += "<input type=\"text\" name=\"marca\" id=\"marca\" class=\"form-control\" placeholder=\"Marca do Produto\" required>";
 		form += "<label for=\"username\">Unidade</label><br>";
 		form += "<input type=\"text\" name=\"unidade\" id=\"unidade\" class=\"form-control\" placeholder=\"Unidade de medida\">";
 		form += "<label for=\"username\">Imagem</label><br>";
@@ -317,7 +318,6 @@ public class ProdutoService {
         form += "</body>";
 		form += "</html>";
 		
-
 		return form;
 	}
 
