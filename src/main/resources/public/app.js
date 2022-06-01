@@ -82,7 +82,7 @@ function mostrarProduto(produto, mercados) {
     let strhtml = `<div class="col-12 col-sm-12 col-md-12 col-lg-3 comparative">
         <div class="produto">
                 <h1>${produto.nome}</h1>
-                <p>${produto.marca} - ${produto.unidade} <br> categoria: ${produto.categoria} <br> ${produto.descricao}</p>
+                <p>${produto.marca} - ${produto.unidade} <br> ${produto.descricao}</p>
             <img src="${produto.imagem}">
         </div>
     </div>
@@ -142,22 +142,22 @@ function showTelaEditUser() {
 
     strhtml += `
                         <form action="/edit/user" method="post">
-                        <input type="text" name="username" id="user1" class="form-control" value="${user.login}" class = "edit">
+                        <input type="text" name="username" id="user1" class="form-control" value="${user.login}" class = "edit" required>
                         <label for="username">Novo nome de Usuário</label><br>
-                        <input type="text" name="newusername" id="user" class="form-control" placeholder="Novo nome de usuário" class = "edit">
+                        <input type="text" name="newusername" id="user" class="form-control" placeholder="Novo nome de usuário" class = "edit" required>
                         <label for="username">Senha</label><br>
-                        <input type="password" name="password" id="senha" class="form-control" placeholder="Senha">
+                        <input type="password" name="password" id="senha" class="form-control" placeholder="Senha" required>
                         <input type="submit" value="Alterar Usuário" class="btn btn-primary" id="btn-cad"> </form>   
                     </div>`
 
     strhtml2 += `
                         <h1>Editar Senha</h1>
                         <form action="/edit/senha" method="post">
-                        <input type="text" name="username" id="user1" class="form-control" value="${user.login}" class = "edit">   
+                        <input type="text" name="username" id="user1" class="form-control" value="${user.login}" class = "edit" required>   
                         <label for="username">Senha antiga</label><br>
-                        <input type="password" name="oldpassword" id="senhaAntiga" class="form-control" placeholder="Senha">
+                        <input type="password" name="oldpassword" id="senhaAntiga" class="form-control" placeholder="Senha" required>
                         <label for="password">Nova senha</label><br>
-                        <input type="password" name="password" id="senhaNova" class="form-control" placeholder="Senha">
+                        <input type="password" name="password" id="senhaNova" class="form-control" placeholder="Senha" required>
                         <input type="submit" value="Alterar Senha" class="btn btn-primary" id="btn-cad"> </form>
                      </div>`
 
@@ -198,14 +198,12 @@ function isAdmin(bool, pagina) {
                 </li>
 					LUGAR1`;
     let user = getUserLS();
-			
-	if(user && user.nome)
-	{
+
+    if (user && user.nome) {
         strmenu = strmenu.replaceAll('LUGAR1', ``);
 
-		if(user.tipo == 'a')
-		{
-	        strmenu += `
+        if (user.tipo == 'a') {
+            strmenu += `
 					    <li class="nav-item menu_item">
 	                        <a class="nav-link" href="REPLACEmercado">AdcMarket</a>
 	                    </li>
@@ -219,8 +217,8 @@ function isAdmin(bool, pagina) {
                     		<a class="nav-link">|</a>
             			</li>
 						`;
-		}
-	    strmenu += `
+        }
+        strmenu += `
                 <li class="nav-item menu_item">
                     <a class="nav-link" href="edit" method="get">${user.login}</a>
                 </li>
@@ -231,16 +229,15 @@ function isAdmin(bool, pagina) {
                     <a class="nav-link" onClick="logOut('${pagina}')" href="index.html">LogOut</a>
                 </li>
                 `;
-		
-	} else
-	{
-		
+
+    } else {
+
         strmenu = strmenu.replaceAll('LUGAR1', `<li class="nav-item menu_item">
                     <a class="nav-link" href="REPLACElogin" method="get">Login</a>
                 </li>
 					`);
-	}
-		strmenu +=  `</ul>
+    }
+    strmenu += `</ul>
 				        </div>
 				    </nav>
 				</header>
@@ -257,13 +254,36 @@ function setUserLS(user) {
     localStorage.setItem('currentUser', JSON.stringify(user));
 }
 
+function setProdLS(prod) {
+    localStorage.setItem('currentProd', JSON.stringify(prod));
+}
+
+function setMercLS(merc) {
+    localStorage.setItem('currentMerc', JSON.stringify(merc));
+}
+
 function getUserLS() {
     let user = localStorage.getItem('currentUser');
-    if(user==null)
-    {
-		user = [];
-	}
+    if (user == null) {
+        user = [];
+    }
     return JSON.parse(user);
+}
+
+function getProdLS() {
+    let prod = localStorage.getItem('currentProd');
+    if (prod == null) {
+        prod = [];
+    }
+    return JSON.parse(prod);
+}
+
+function getMercLS() {
+    let merc = localStorage.getItem('currentMerc');
+    if (merc == null) {
+        merc = [];
+    }
+    return JSON.parse(merc);
 }
 
 function logOut(pagina) {
