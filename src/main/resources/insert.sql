@@ -8,7 +8,7 @@ insert into sm.estabelecimento (id, nome, estado, cidade, bairro, rua, numero, l
 
 insert into sm.estabelecimento (id, nome, estado, cidade, bairro, rua, numero, logo) values (2, 'BH', 'MG', 'Contagem', 'Industrial', 'Tiradentes', 1535, 'https://logodownload.org/wp-content/uploads/2021/07/supermercados-bh-logo.png');
 
-insert into sm.estabelecimento (id, nome, estado, cidade, bairro, rua, numero, logo) values (3, 'Apoio Mineiro', 'MG', 'Belo Horizonte', 'Tirol', 'Antônio Eustáquio Piazza', 2725, 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shopfully.com.br%2Flojas%2Fapoio-mineiro%2F690409%2Fbabita-camargos-1295&psig=AOvVaw1XejWL8UYKAHv-uUIl6LIT&ust=1651943108145000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCLjyzOOty_cCFQAAAAAdAAAAABAD');
+insert into sm.estabelecimento (id, nome, estado, cidade, bairro, rua, numero, logo) values (3, 'Apoio Mineiro', 'MG', 'Belo Horizonte', 'Tirol', 'Antônio Eustáquio Piazza', 2725, 'https://pt-br-media.shopfully.cloud/images/catene/segnalino_apoio-mineiro@2x.png');
 
 insert into sm.usuario (cpf, nome, login, senha, email, creditos, tipo) values ('12345678911', 'jose', 'login', 'senha', 'email', 4, 'o');
 

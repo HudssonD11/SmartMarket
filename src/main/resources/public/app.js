@@ -82,7 +82,7 @@ function mostrarProduto(produto, mercados) {
     let strhtml = `<div class="col-12 col-sm-12 col-md-12 col-lg-3 comparative">
         <div class="produto">
                 <h1>${produto.nome}</h1>
-                <p>${produto.marca} - ${produto.unidade} <br> categoria: ${produto.categoria} <br> ${produto.descricao}</p>
+                <p>${produto.marca} - ${produto.unidade} <br> ${produto.descricao}</p>
             <img src="${produto.imagem}">
         </div>
     </div>
@@ -142,22 +142,22 @@ function showTelaEditUser() {
 
     strhtml += `
                         <form action="/edit/user" method="post">
-                        <input type="text" name="username" id="user1" class="form-control" value="${user.login}" class = "edit">
+                        <input type="text" name="username" id="user1" class="form-control" value="${user.login}" class = "edit" required>
                         <label for="username">Novo nome de Usuário</label><br>
-                        <input type="text" name="newusername" id="user" class="form-control" placeholder="Novo nome de usuário" class = "edit">
+                        <input type="text" name="newusername" id="user" class="form-control" placeholder="Novo nome de usuário" class = "edit" required>
                         <label for="username">Senha</label><br>
-                        <input type="password" name="password" id="senha" class="form-control" placeholder="Senha">
+                        <input type="password" name="password" id="senha" class="form-control" placeholder="Senha" required>
                         <input type="submit" value="Alterar Usuário" class="btn btn-primary" id="btn-cad"> </form>   
                     </div>`
 
     strhtml2 += `
                         <h1>Editar Senha</h1>
                         <form action="/edit/senha" method="post">
-                        <input type="text" name="username" id="user1" class="form-control" value="${user.login}" class = "edit">   
+                        <input type="text" name="username" id="user1" class="form-control" value="${user.login}" class = "edit" required>   
                         <label for="username">Senha antiga</label><br>
-                        <input type="password" name="oldpassword" id="senhaAntiga" class="form-control" placeholder="Senha">
+                        <input type="password" name="oldpassword" id="senhaAntiga" class="form-control" placeholder="Senha" required>
                         <label for="password">Nova senha</label><br>
-                        <input type="password" name="password" id="senhaNova" class="form-control" placeholder="Senha">
+                        <input type="password" name="password" id="senhaNova" class="form-control" placeholder="Senha" required>
                         <input type="submit" value="Alterar Senha" class="btn btn-primary" id="btn-cad"> </form>
                      </div>`
 
@@ -195,14 +195,12 @@ function isAdmin(bool, pagina) {
                 </li>
 					LUGAR1`;
     let user = getUserLS();
-			
-	if(user && user.nome)
-	{
+
+    if (user && user.nome) {
         strmenu = strmenu.replaceAll('LUGAR1', ``);
 
-		if(user.tipo == 'a')
-		{
-	        strmenu += `
+        if (user.tipo == 'a') {
+            strmenu += `
 					    <li class="nav-item menu_item">
 	                        <a class="nav-link" href="REPLACEmercado">AdcMarket</a>
 	                    </li>
@@ -216,8 +214,8 @@ function isAdmin(bool, pagina) {
                     		<a class="nav-link">|</a>
             			</li>
 						`;
-		}
-	    strmenu += `
+        }
+        strmenu += `
                 <li class="nav-item menu_item">
                     <a class="nav-link" href="edit" method="get">${user.login}</a>
                 </li>
@@ -228,16 +226,15 @@ function isAdmin(bool, pagina) {
                     <a class="nav-link" onClick="logOut('${pagina}')" href="index.html">LogOut</a>
                 </li>
                 `;
-		
-	} else
-	{
-		
+
+    } else {
+
         strmenu = strmenu.replaceAll('LUGAR1', `<li class="nav-item menu_item">
                     <a class="nav-link" href="REPLACElogin" method="get">Login</a>
                 </li>
 					`);
-	}
-		strmenu +=  `</ul>
+    }
+    strmenu += `</ul>
 				        </div>
 				    </nav>
 				</header>
@@ -254,13 +251,36 @@ function setUserLS(user) {
     localStorage.setItem('currentUser', JSON.stringify(user));
 }
 
+function setProdLS(prod) {
+    localStorage.setItem('currentProd', JSON.stringify(prod));
+}
+
+function setMercLS(merc) {
+    localStorage.setItem('currentMerc', JSON.stringify(merc));
+}
+
 function getUserLS() {
     let user = localStorage.getItem('currentUser');
-    if(user==null)
-    {
-		user = [];
-	}
+    if (user == null) {
+        user = [];
+    }
     return JSON.parse(user);
+}
+
+function getProdLS() {
+    let prod = localStorage.getItem('currentProd');
+    if (prod == null) {
+        prod = [];
+    }
+    return JSON.parse(prod);
+}
+
+function getMercLS() {
+    let merc = localStorage.getItem('currentMerc');
+    if (merc == null) {
+        merc = [];
+    }
+    return JSON.parse(merc);
 }
 
 function logOut(pagina) {
@@ -270,4 +290,106 @@ function logOut(pagina) {
     } else {
         window.location.href = "index.html";
     }
+}
+
+// ------------------- Search ----------------------
+
+function leProdutos() {
+    let strDados = localStorage.getItem('currentProd');
+    let objDados = {};
+    objDados = JSON.parse(strDados);
+    salvaProdutos(objDados);
+    return objDados;
+}
+function salvaProdutos(dados) {
+    localStorage.setItem('currentProd', JSON.stringify(dados));
+}
+function leMercados() {
+    let strDados = localStorage.getItem('currentMerc');
+    let objDados = {};
+    objDados = JSON.parse(strDados);
+    salvaMercados(objDados);
+    return objDados;
+}
+function salvaMercados(dados) {
+    localStorage.setItem('currentMerc', JSON.stringify(dados));
+}
+function stringPadrao(string) {
+
+    string = string.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    string = string.toLowerCase()
+    return string;
+}
+function filtraProdutos() {
+    let objDados = leProdutos();
+    let produtoPesquisado = stringPadrao(document.getElementById('pesquisaMercado').value);
+    let strHtml = '';
+    console.log(produtoPesquisado);
+    console.log(objDados[1].nome);
+    let tela = document.getElementById('tela');
+
+    for (let i = 0; i < objDados.length - 1; i++) {
+        const prod = objDados[i];
+
+
+        if (stringPadrao(prod.nome).indexOf(produtoPesquisado) >= 0 || produtoPesquisado == '' ||
+            stringPadrao(prod.categoria).indexOf(produtoPesquisado) >= 0 ||
+            stringPadrao(prod.marca).indexOf(produtoPesquisado) >= 0 && (prod.Mercado == selecionado || selecionado == '')) {
+
+            strHtml +=
+                `
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 box-produto noUnderline">
+                        <div class="produto">
+                            <a href="produtos/${objDados[i].id}">
+                                <h1>${objDados[i].nome}</h1>
+                                <p>${objDados[i].categoria}</p>
+                            <img src="${objDados[i].imagem}">
+                            </a>
+                            <a href="produtos/${objDados[i].id}"><button type="button" class="btn btn-secondary" id="btn_oferta">Ver Ofertas</button></a>
+                        </div>
+                    </div>
+                `
+        }
+
+    }
+
+    tela.innerHTML = strHtml;
+
+}
+
+function filtraMercado() {
+    let objDados = leMercados();
+    let mercadoPesquisado = stringPadrao(document.getElementById('pesquisaMercado').value);
+    let strHtml = '';
+    let tela = document.getElementById('tela');
+
+    for (let i = 0; i < objDados.length - 1; i++) {
+        const mercado = objDados[i];
+
+
+        if (stringPadrao(mercado.nome).indexOf(mercadoPesquisado) >= 0 || mercadoPesquisado == ''
+            && (mercado.Mercado == selecionado || selecionado == '')) {
+
+            strHtml +=
+                `
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="mercado noUnderline">
+                    <a href="mercados/${objDados[i].id}">
+                        <h1>${objDados[i].nome}</h1>
+                    </a>
+                    <hr>
+                    <a href="mercados/${objDados[i].id}">
+                    <img src="${objDados[i].imagem}">
+                    </a>
+                    <hr>
+                    <p style="color: grey;">${objDados[i].cidade} - ${objDados[i].estado}<br>${objDados[i].bairro}</p>
+                </div>
+            </div>
+                `
+        }
+
+    }
+
+    tela.innerHTML = strHtml;
+
 }
