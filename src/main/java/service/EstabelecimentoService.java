@@ -38,7 +38,7 @@ public class EstabelecimentoService
         form += "</script>";
         form += "</head>";
         form += "<!--Menu Superior-->";
-        form += "<body onLoad=\"isAdmin(true,'../mercados'),mostrarMercados(mercados), setMercLS(mercados)\">";
+        form += "<body onLoad=\"isAdmin(true,'../mercados'),mostrarMercados(mercados), setMercadosLS(mercados)\">";
         form += "<div id=\"menu\">";
         form += "<header class=\"container header\">";
         form += "<nav class=\"navbar navbar-expand-lg navbar-light bg-light menu\">";

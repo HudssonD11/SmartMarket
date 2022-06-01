@@ -122,7 +122,6 @@ function mostrarProdutosMercado(produto) {
         strhtml += `<div class="col-12 col-sm-12 col-md-12 col-lg-4 box-produto">
         <div class="produto">
                 <h1>${produto[i].nome} ${produto[i].unidade}</h1>
-                <p>${produto[i].categoria}</p>
             <img src="${produto[i].imagem}">
             <p class="Supermercado">R$${produto[i].preco}</p>
         </div>
@@ -258,9 +257,6 @@ function setProdLS(prod) {
     localStorage.setItem('currentProd', JSON.stringify(prod));
 }
 
-function setMercLS(merc) {
-    localStorage.setItem('currentMerc', JSON.stringify(merc));
-}
 
 function getUserLS() {
     let user = localStorage.getItem('currentUser');
@@ -276,14 +272,6 @@ function getProdLS() {
         prod = [];
     }
     return JSON.parse(prod);
-}
-
-function getMercLS() {
-    let merc = localStorage.getItem('currentMerc');
-    if (merc == null) {
-        merc = [];
-    }
-    return JSON.parse(merc);
 }
 
 function logOut(pagina) {
@@ -338,5 +326,105 @@ function dropdownMercados()
 		tela.innerHTML = code;
 }
 
+// ------------------- Search ----------------------
+
+function leProdutos() {
+    let strDados = localStorage.getItem('currentProd');
+    let objDados = {};
+    objDados = JSON.parse(strDados);
+    salvaProdutos(objDados);
+    return objDados;
+}
+function salvaProdutos(dados) {
+    localStorage.setItem('currentProd', JSON.stringify(dados));
+}
+function leMercados() {
+    let strDados = localStorage.getItem('mercados');
+    let objDados = {};
+    objDados = JSON.parse(strDados);
+    salvaMercados(objDados);
+    return objDados;
+}
+function salvaMercados(dados) {
+    localStorage.setItem('mercados', JSON.stringify(dados));
+}
+function stringPadrao(string) {
+
+    string = string.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+    string = string.toLowerCase()
+    return string;
+}
+
+function filtraProdutos() {
+    let objDados = leProdutos();
+    let produtoPesquisado = stringPadrao(document.getElementById('pesquisaMercado').value);
+    let strHtml = '';
+    console.log(produtoPesquisado);
+    console.log(objDados[1].nome);
+    let tela = document.getElementById('tela');
+
+    for (let i = 0; i < objDados.length - 1; i++) {
+        const prod = objDados[i];
 
 
+        if (stringPadrao(prod.nome).indexOf(produtoPesquisado) >= 0 || produtoPesquisado == '' ||
+            stringPadrao(prod.categoria).indexOf(produtoPesquisado) >= 0 ||
+            stringPadrao(prod.marca).indexOf(produtoPesquisado) >= 0 && (prod.Mercado == selecionado || selecionado == '')) {
+
+            strHtml +=
+                `
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 box-produto noUnderline">
+                        <div class="produto">
+                            <a href="produtos/${objDados[i].id}">
+                                <h1>${objDados[i].nome}</h1>
+                                <p>${objDados[i].categoria}</p>
+                            <img src="${objDados[i].imagem}">
+                            </a>
+                            <a href="produtos/${objDados[i].id}"><button type="button" class="btn btn-secondary" id="btn_oferta">Ver Ofertas</button></a>
+                        </div>
+                    </div>
+                `
+        }
+
+    }
+
+    tela.innerHTML = strHtml;
+
+}
+
+function filtraMercado() {
+    let objDados = leMercados();
+    let mercadoPesquisado = stringPadrao(document.getElementById('pesquisaMercado').value);
+    let strHtml = '';
+    let tela = document.getElementById('tela');
+
+    for (let i = 0; i < objDados.length - 1; i++) {
+        const mercado = objDados[i];
+
+
+        if (stringPadrao(mercado.nome).indexOf(mercadoPesquisado) >= 0 || mercadoPesquisado == ''
+            && (mercado.Mercado == selecionado || selecionado == '')) {
+
+            strHtml +=
+                `
+                <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+                <div class="mercado noUnderline">
+                    <a href="mercados/${objDados[i].id}">
+                        <h1>${objDados[i].nome}</h1>
+                    </a>
+                    <hr>
+                    <a href="mercados/${objDados[i].id}">
+                    <img src="${objDados[i].imagem}">
+                    </a>
+                    <hr>
+                    <p style="color: grey;">${objDados[i].cidade} - ${objDados[i].estado}<br>${objDados[i].bairro}</p>
+                </div>
+            </div>
+                `
+        }
+
+    }
+
+    tela.innerHTML = strHtml;
+
+}
