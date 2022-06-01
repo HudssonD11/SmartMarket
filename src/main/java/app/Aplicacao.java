@@ -31,8 +31,8 @@ public class Aplicacao {
         
         staticFiles.location("/public");
 
-        File uploadDir = new File("src/main/resources/notasFiscais");
-        uploadDir.mkdir();
+        File uploadDir = new File("src/main/resources/public/notasFiscais");
+//        uploadDir.mkdir();
         
         post("/ocr", (req, res) -> {            
         	Path tempFile = Files.createTempFile(uploadDir.toPath(), "", "");

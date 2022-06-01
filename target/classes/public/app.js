@@ -295,12 +295,10 @@ function dropdownMercados()
 	let mercados = getMercadosLS();
 	let tela = document.getElementById('dropdownMercados');
 	
-	let code = `<h1>Atualização de Preços</h1>
-        <div class="bloco" id="dropdownMercados">
-		<form action="ocr" method="post" enctype="multipart/form-data">
+	let code = `<form action="ocr" method="post" enctype="multipart/form-data">
             <label for="mercado">Estabelecimento:</label><br>
             <select name="mercado">
-`
+`;
 	for(i=0; i<mercados.length - 1; i++)
 	{
 		code += `<option value="${mercados[i].id}">${mercados[i].nome} - ${mercados[i].bairro} - ${mercados[i].cidade} - ${mercados[i].estado}</option>

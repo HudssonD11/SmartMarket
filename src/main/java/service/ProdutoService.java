@@ -290,7 +290,7 @@ public class ProdutoService {
 		form += "<h1 id=\"insert\">Adicionar Produto</h1>";
 		form += "<section class=\"row card_insert\" id=\"tela\">";
 		form += "<div class=\"col-12 col-sm-12 col-md-6 col-lg-12\">";
-		form += "<form action=\"produto/adicionar\" method=\"post\">";
+		form += "<form action=\"produto/adicionar\" method=\"post\" enctype=\"multipart/form-data\">";
 		form += "<label for=\"username\">Produto</label><br>";
 		form += "<input type=\"text\" name=\"nome\" id=\"produto\" class=\"form-control\" placeholder=\"Nome do Produto\">";
 		form += "<label for=\"username\">Categoria</label><br>";
@@ -302,7 +302,7 @@ public class ProdutoService {
 		form += "<label for=\"username\">Unidade</label><br>";
 		form += "<input type=\"text\" name=\"unidade\" id=\"unidade\" class=\"form-control\" placeholder=\"Unidade de medida\">";
 		form += "<label for=\"username\">Imagem</label><br>";
-		form += "<input type=\"text\" name=\"imagem\" id=\"imagem\" class=\"form-control\" placeholder=\"URL da imagem\">";
+		form += "<input type=\"file\" name=\"imagem\" id=\"imagem\" class=\"form-control\" >";
 		form += "<input type=\"submit\" value=\"Cadastrar\" class=\"btn btn-primary\" id=\"btn-cad\"></form>";
 		form += "</div>";
 		form += "</section>";
