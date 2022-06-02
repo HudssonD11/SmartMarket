@@ -81,6 +81,7 @@ public class Aplicacao {
         get("/produtos", (request, response) -> ProdService.getAll(request, response));
         get("/produtos/:idProduct", (request, response) -> EstabService.getByProduct(request, response));
         post("/produto/adicionar", (request, response) -> ProdService.insert(request, response));
+        get("/produtos/indeferidos", (request, response) -> ProdService.getStrings(request, response));
         
         get("/login/entrar", (request, response) -> UserService.get(request, response));
         get("/login", (request, response) -> UserService.getLogin(request, response));
