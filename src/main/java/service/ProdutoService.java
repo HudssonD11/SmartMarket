@@ -291,7 +291,7 @@ public class ProdutoService {
 		form += "<h1 id=\"insert\">Adicionar Produto</h1>";
 		form += "<section class=\"row card_insert\" id=\"tela\">";
 		form += "<div class=\"col-12 col-sm-12 col-md-6 col-lg-12\">";
-		form += "<form action=\"produto/adicionar\" method=\"post\">";
+		form += "<form action=\"http://localhost:6789/produto/adicionar\" method=\"post\">";
 		form += "<label for=\"username\">Produto</label><br>";
 		form += "<input type=\"text\" name=\"nome\" id=\"produto\" class=\"form-control\" placeholder=\"Nome do Produto\" required>";
 		form += "<label for=\"username\">Categoria</label><br>";

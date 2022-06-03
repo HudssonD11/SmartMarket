@@ -75,7 +75,7 @@ public class UsuarioService {
         form += "<div class=\"col-12 col-sm-12 col-md-12 col-lg-6 login\">";
         form += "<h1>Faça seu login</h1>";
         form += "<div class=\"bloco\">";
-        form += "<form action=\"/login/entrar\" method=\"get\">";
+        form += "<form action=\"http://localhost:6789/login/entrar\" method=\"get\">";
         form += "<label for=\"username\">Usuário</label><br>";
         form += "<input type=\"text\" name=\"username\" id=\"box\" class=\"form-control\"placeholder=\"Usuário\" required>";
         form += "<label for=\"password\">Senha</label><br>";
@@ -163,7 +163,7 @@ public class UsuarioService {
         form += "<a class=\"nav-link\" >|</a>";
         form += "</li>";
         form += "<li class=\"nav-item menu_item\">";
-        form += "<a class=\"nav-link\" href=\"..\\produtos\" method=\"get\">Produtos</a>";
+        form += "<a class=\"nav-link\" href=\"http://localhost:6789/produtos\" method=\"get\">Produtos</a>";
         form += "</li>";
         form += "<li class=\"nav-item menu_item\">";
         form += "<a class=\"nav-link\">|</a>";
@@ -186,7 +186,7 @@ public class UsuarioService {
         form += "<div class=\"col-12 col-sm-12 col-md-12 col-lg-6 login\">";
         form += "<h1>Faça seu login</h1>";
         form += "<div class=\"bloco\">";
-        form += "<form action=\"/login/entrar\" method=\"get\">";
+        form += "<form action=\"http://localhost:6789/login/entrar\" method=\"get\">";
         form += "<label for=\"username\">Usuário</label><br>";
         form += "<input type=\"text\" name=\"username\" id=\"box\" class=\"form-control\"placeholder=\"Usuário\" required>";
         form += "<label for=\"password\">Senha</label><br>";
@@ -198,7 +198,7 @@ public class UsuarioService {
         form += "<div class=\"col-12 col-sm-12 col-md-12 col-lg-6 cadastro\">";
         form += "<h1>Cadastre-se</h1>";
         form += "<div class=\"bloco2\">";
-        form += "<form action=\"login/cadastrar\" method=\"post\"><label for=\"username\">Nome completo</label><br>";
+        form += "<form action=\"http://localhost:6789/login/cadastrar\" method=\"post\"><label for=\"username\">Nome completo</label><br>";
         form += "<input type=\"text\" name=\"nome\" id=\"user\" class=\"form-control\"placeholder=\"Nome Completo\" required>";
         form += "<label for=\"username\">Email</label><br>";
         form += "<input type=\"text\" name=\"email\" id=\"user\" class=\"form-control\"placeholder=\"Email\" required>";
