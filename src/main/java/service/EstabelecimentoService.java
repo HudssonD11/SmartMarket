@@ -344,7 +344,7 @@ public class EstabelecimentoService
         String logo = request.queryParams("logo");
 		
 		String resp = "";
-		Estabelecimento estab = new Estabelecimento(nextId++, nome, estado, cidade, bairro, rua, numero, logo);
+		Estabelecimento estab = new Estabelecimento(++nextId, nome, estado, cidade, bairro, rua, numero, logo);
 		
 		if(estabelecimentoDAO.insert(estab) == true) {
             resp = "estabelecimento (" + nome + ") inserido!";

@@ -176,22 +176,22 @@ function isAdmin(bool, pagina) {
         <div class="collapse navbar-collapse" id="navbarSite">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item name">
-                    <a class="nav-link" href="REPLACEindex.html">SmartMarket</a>
+                    <a class="nav-link" href="http://localhost:6789/index.html">SmartMarket</a>
                 </li>
                 <li class="nav-item menu_item">
                     <a class="nav-link" >|</a>
                 </li>
                 <li class="nav-item menu_item">
-                    <a class="nav-link" href="REPLACEprodutos" method="get">Produtos</a>
+                    <a class="nav-link" href="http://localhost:6789/produtos" method="get">Produtos</a>
                 </li>
                 <li class="nav-item menu_item">
-                    <a class="nav-link" href="REPLACERefreshPrices.html" method="get">Refresh</a>
+                    <a class="nav-link" href="http://localhost:6789/RefreshPrices.html" method="get">Refresh</a>
                 </li>
                 <li class="nav-item menu_item">
                     <a class="nav-link">|</a>
                 </li>
                 <li class="nav-item menu_item">
-                    <a class="nav-link" href="REPLACEmercados" method="get">Supermercados</a>
+                    <a class="nav-link" href="http://localhost:6789/mercados" method="get">Supermercados</a>
                 <li class="nav-item menu_item">
                     <a class="nav-link">|</a>
                 </li>
@@ -204,13 +204,13 @@ function isAdmin(bool, pagina) {
         if (user.tipo == 'a') {
             strmenu += `
 					    <li class="nav-item menu_item">
-	                        <a class="nav-link" href="REPLACEmercado">AdcMarket</a>
+	                        <a class="nav-link" href="http://localhost:6789/mercado">AdcMarket</a>
 	                    </li>
 					    <li class="nav-item menu_item">
 	                        <a class="nav-link">|</a>
 	                	</li>
 	                    <li class="nav-item menu_item">
-	                        <a class="nav-link" href="REPLACEproduto">AdcProduct</a>
+	                        <a class="nav-link" href="http://localhost:6789/produto">AdcProduct</a>
 	                    </li>
 	            	    <li class="nav-item menu_item">
                     		<a class="nav-link">|</a>
@@ -219,20 +219,20 @@ function isAdmin(bool, pagina) {
         }
         strmenu += `
                 <li class="nav-item menu_item">
-                    <a class="nav-link" href="edit" method="get">${user.login}</a>
+                    <a class="nav-link" href="http://localhost:6789/edit" method="get">${user.login}</a>
                 </li>
    			    <li class="nav-item menu_item">
                     <a class="nav-link">|</a>
             	</li>
                 <li class="nav-item menu_item">
-                    <a class="nav-link" onClick="logOut('${pagina}')" href="index.html">LogOut</a>
+                    <a class="nav-link" onClick="logOut('${pagina}')" href="http://localhost:6789/index.html">LogOut</a>
                 </li>
                 `;
 
     } else {
 
         strmenu = strmenu.replaceAll('LUGAR1', `<li class="nav-item menu_item">
-                    <a class="nav-link" href="REPLACElogin" method="get">Login</a>
+                    <a class="nav-link" href="http://localhost:6789/login" method="get">Login</a>
                 </li>
 					`);
     }
@@ -241,11 +241,6 @@ function isAdmin(bool, pagina) {
 				    </nav>
 				</header>
 				`;
-    if (bool) {
-        strmenu = strmenu.replaceAll('REPLACE', '../');
-    } else {
-        strmenu = strmenu.replaceAll('REPLACE', '');
-    }
     tela.innerHTML = strmenu;
 }
 
