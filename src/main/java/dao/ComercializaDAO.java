@@ -49,8 +49,11 @@ public class ComercializaDAO extends DAO
         try {
             Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT * FROM comercializa WHERE estabelecimento = "+ estab +" AND produto = "+ produto;
+            System.out.println(st.executeQuery(sql));
             ResultSet rs = st.executeQuery(sql);	
-            if(rs.next()){            
+            
+            if(rs.next()){    
+                System.out.println("peguei certo");        
                 com = new Comercializa(rs.getInt("estabelecimento"), rs.getInt("produto"), rs.getString("preco"));
             }
             st.close();
@@ -81,7 +84,7 @@ public class ComercializaDAO extends DAO
         
         try {
             Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-            String sql = "SELECT * FROM comercializa" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
+            String sql = "SELECT * FROM sm.comercializa" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
             ResultSet rs = st.executeQuery(sql);	           
             while(rs.next()) {
                 Comercializa p = new Comercializa(rs.getInt("estabelecimento"), rs.getInt("produto"), rs.getString("preco"));
@@ -95,10 +98,10 @@ public class ComercializaDAO extends DAO
     }
     
     
-    public boolean update(Comercializa ac) {
+    public boolean update(Comercializa ac, String valor) {
         boolean status = false;
         try {  
-            String sql = "UPDATE comercializa SET preco = '"+ac.getPreco()+"' WHERE estabelecimento = " + ac.getEstabelecimento()
+            String sql = "UPDATE sm.comercializa SET preco = '"+valor+"' WHERE estabelecimento = " + ac.getEstabelecimento()
             + " AND produto = "+ac.getProduto();
             PreparedStatement st = conexao.prepareStatement(sql);
             st.executeUpdate();
@@ -115,7 +118,7 @@ public class ComercializaDAO extends DAO
         boolean status = false;
         try {  
             Statement st = conexao.createStatement();
-            st.executeUpdate("DELETE FROM Comercializa WHERE produto = "+ produto + " AND estabelecimento = " + estab);
+            st.executeUpdate("DELETE FROM sm.comercializa WHERE produto = "+ produto + " AND estabelecimento = " + estab);
             st.close();
             status = true;
         } catch (SQLException u) {  

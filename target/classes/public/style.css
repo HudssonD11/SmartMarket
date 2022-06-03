@@ -146,6 +146,7 @@
     display: none;
 }
 
+
 .produto img {
     width: 30%;
     height: 165px;
@@ -169,6 +170,29 @@
 }
 #valid{
     margin-left: 21%;
+}
+#nome{
+    width: 62%;
+    float: left;
+    padding: 10px;
+    margin: 10px;
+}
+#valor{
+    width: 25%;
+    float: left;
+    padding: 10px;
+    margin: 10px;
+}
+.addprod{
+    background-color: rgba(243, 243, 243, 1);
+    margin-top: 10px!important;
+}
+
+.drop{
+    display: block !important;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
 }
 
 /* Recompensas */
