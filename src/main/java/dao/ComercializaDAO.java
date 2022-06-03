@@ -49,11 +49,9 @@ public class ComercializaDAO extends DAO
         try {
             Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
             String sql = "SELECT * FROM sm.comercializa WHERE estabelecimento = "+ estab +" AND produto = "+ produto;
-            System.out.println(st.executeQuery(sql));
             ResultSet rs = st.executeQuery(sql);	
             
-            if(rs.next()){    
-                System.out.println("peguei certo");        
+            if(rs.next()){           
                 com = new Comercializa(rs.getInt("estabelecimento"), rs.getInt("produto"), rs.getString("preco"));
             }
             st.close();

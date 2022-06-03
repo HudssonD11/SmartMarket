@@ -347,7 +347,7 @@ function mostrarBugados2(produtos) {
             
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="addprod">
-                    <form action="/indeferidos/update" method="post">
+                    <form>
                     <input type="text" name="id" id="user1" class="form-control" value="${produtos[i].id}" required>
                     <input type="text" name="nome" id="nome" class="form-control" value="${produtos[i].nome}" required disabled="">
                     <input type="text" name="valor" id="valor" class="form-control" value="${produtos[i].valor}" required>
@@ -359,12 +359,27 @@ function mostrarBugados2(produtos) {
                     strHtml += `</select>
                     
                     <button type="button" class="btn btn-primary" id="btn-validacao">RECUSAR</button>
-                    <input type=\"submit\" value=\"ACEITAR\"class="btn btn-primary" id="btn-aceitar"></form>
+                    <button onclick="deleteProd(${produtos[i].nome})" class="btn btn-primary" id="btn-aceitar">Aceitar</button></form>
                 </div>
             </div>
             `
     }
     tela.innerHTML = strHtml;
+}
+
+function deleteProd(nome) {
+    let produtos = getUpdatesLS();
+    console.log("to")
+    let strHtml = '';
+    let pos;
+    for (let i = 0; i < (produtos.length - 1); i++) {
+        if (produtos[i].nome == nome) {
+            pos = i;
+            i = produtos.length - 1;
+        }
+    }
+    produtos.splice(pos, 1)
+    setUpdatesLS(produtos);
 }
 
 function mostrarBugados() {
@@ -380,7 +395,7 @@ function mostrarBugados() {
             
             <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                 <div class="addprod">
-                    <form action="/indeferidos/update" method="post">
+                    <form>
                     <input type="text" name="id" id="user1" class="form-control" value="${produtos[i].id}" required>
                     <input type="text" name="nome" id="nome" class="form-control" value="${produtos[i].nome}" required disabled="">
                     <input type="text" name="valor" id="valor" class="form-control" value="${produtos[i].valor}" required>
@@ -392,7 +407,7 @@ function mostrarBugados() {
                     strHtml += `</select>
                     
                     <button type="button" class="btn btn-primary" id="btn-validacao">RECUSAR</button>
-                    <input type=\"submit\" value=\"ACEITAR\"class="btn btn-primary" id="btn-aceitar"></form>
+                    <button onclick="deleteProd(${produtos[i].nome})" class="btn btn-primary" id="btn-aceitar">Aceitar</button></form>
                 </div>
             </div>
             `

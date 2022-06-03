@@ -648,7 +648,6 @@ public class ProdutoService {
         int id = Integer.parseInt(request.queryParams("id"));
         int idP = Integer.parseInt(request.queryParams("produtos"));
         String valor = request.queryParams("valor");
-		System.out.println("Mercado: "+id+" prod: "+idP+" valor: "+valor);
         String resp = "";
 
         Comercializa prod = comercializaDAO.get(id, idP);
