@@ -288,6 +288,11 @@ function setMercadosLS(mercados)
 	localStorage.setItem('mercados', JSON.stringify(mercados));
 }
 
+function setUpdatesLS(produtos)
+{
+	localStorage.setItem('produtosUpdate', JSON.stringify(produtos));
+}
+
 function getMercadosLS()
 {
 	let mercados = localStorage.getItem('mercados');
@@ -298,6 +303,16 @@ function getMercadosLS()
 	return JSON.parse(mercados);
 }
 
+function getUpdatesLS()
+{
+	let update = localStorage.getItem('produtosUpdate');
+	if(update==null)
+	{
+		update = [];
+	} 
+	return JSON.parse(update);
+}
+
 function dropdownMercados()
 {
 	let mercados = getMercadosLS();
@@ -305,7 +320,7 @@ function dropdownMercados()
 	
 	let code = `<form action="ocr" method="post" enctype="multipart/form-data">
             <label for="mercado">Estabelecimento:</label><br>
-            <select name="mercado">
+            cc
 `;
 	for(i=0; i<mercados.length - 1; i++)
 	{
@@ -322,6 +337,72 @@ function dropdownMercados()
 		</form>`;
 		
 		tela.innerHTML = code;
+}
+
+function mostrarBugados2(produtos) {
+    let prod = getProdLS();
+    setUpdatesLS(produtos);
+    let tela = document.getElementById('tela');
+    let strHtml = '';
+
+    for (i = 0; i < (produtos.length - 1); i++) {
+        console.log(i)
+        strHtml +=
+            `
+            
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="addprod">
+                    <form action="/indeferidos/update" method="post">
+                    <input type="text" name="id" id="user1" class="form-control" value="${produtos[i].id}" required>
+                    <input type="text" name="nome" id="nome" class="form-control" value="${produtos[i].nome}" required disabled="">
+                    <input type="text" name="valor" id="valor" class="form-control" value="${produtos[i].valor}" required>
+                    <select name="produtos" class="drop">`
+                    for(j=0; j<prod.length - 1; j++)
+                    {
+                        strHtml += `<option value="${prod[j].id}">${prod[j].nome}</option>`;
+                    }
+                    strHtml += `</select>
+                    
+                    <button type="button" class="btn btn-primary" id="btn-validacao">RECUSAR</button>
+                    <input type=\"submit\" value=\"ACEITAR\"class="btn btn-primary" id="btn-aceitar"></form>
+                </div>
+            </div>
+            `
+    }
+    tela.innerHTML = strHtml;
+}
+
+function mostrarBugados() {
+    let prod = getProdLS();
+    let produtos = getUpdatesLS();
+    let tela = document.getElementById('tela');
+    let strHtml = '';
+
+    for (i = 0; i < (produtos.length - 1); i++) {
+        console.log(i)
+        strHtml +=
+            `
+            
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="addprod">
+                    <form action="/indeferidos/update" method="post">
+                    <input type="text" name="id" id="user1" class="form-control" value="${produtos[i].id}" required>
+                    <input type="text" name="nome" id="nome" class="form-control" value="${produtos[i].nome}" required disabled="">
+                    <input type="text" name="valor" id="valor" class="form-control" value="${produtos[i].valor}" required>
+                    <select name="produtos" class="drop">`
+                    for(j=0; j<prod.length - 1; j++)
+                    {
+                        strHtml += `<option value="${prod[j].id}">${prod[j].nome}</option>`;
+                    }
+                    strHtml += `</select>
+                    
+                    <button type="button" class="btn btn-primary" id="btn-validacao">RECUSAR</button>
+                    <input type=\"submit\" value=\"ACEITAR\"class="btn btn-primary" id="btn-aceitar"></form>
+                </div>
+            </div>
+            `
+    }
+    tela.innerHTML = strHtml;
 }
 
 // ------------------- Search ----------------------

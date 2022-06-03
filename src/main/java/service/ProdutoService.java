@@ -6,26 +6,30 @@ import java.util.List;
 import dao.ProdutoDAO;
 import dao.EstabelecimentoDAO;
 import model.Produto;
+import model.Comercializa;
+import dao.ComercializaDAO;
 import model.Estabelecimento;
 import spark.Request;
 import spark.Response;
 
-class produtoUser{
+class produtoUser {
 	int id;
 	String nome;
 	float valor;
 
-	public produtoUser(int id, String nome, float valor){
+	public produtoUser(int id, String nome, float valor) {
 		this.id = id;
 		this.nome = nome;
 		this.valor = valor;
 	}
-	public produtoUser(){
+
+	public produtoUser() {
 		this.id = -1;
 		this.nome = "";
 		this.valor = -1;
 	}
-	public produtoUser clone(){
+
+	public produtoUser clone() {
 		produtoUser produto = new produtoUser();
 		produto.nome = this.nome;
 		produto.id = this.id;
@@ -37,6 +41,7 @@ class produtoUser{
 public class ProdutoService {
 
 	private ProdutoDAO produtoDAO = new ProdutoDAO();
+	private ComercializaDAO comercializaDAO = new ComercializaDAO();
 	private int nextId = produtoDAO.getLastId();
 	private String form;
 
@@ -358,6 +363,9 @@ public class ProdutoService {
 
 	public String makeFormIndeferidos() throws ParseException {
 		String[] arquivos = new String[10];
+		produtoUser[] produtos = new produtoUser[30];
+		arquivos = leitura();
+		produtos = read(arquivos);
 		form = "<!doctype html>";
 		form += "<!doctype html>";
 		form += "<html lang=\"pt-br\">";
@@ -369,12 +377,13 @@ public class ProdutoService {
 		form += "<!-- Bootstrap CSS -->";
 		form += "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css\">";
 		form += "<script src=\"https://kit.fontawesome.com/c81b80495f.js\" crossorigin=\"anonymous\"></script>";
-		form += "<script src=\"app.js\"></script>";
+		form += "<script src = \"..\\app.js\"> </script>";
+		form += "<script> VARIAVEL  </script>";
 		form += "<!-- Meu css -->";
 		form += "<link rel=\"stylesheet\" href=\"..\\style.css\">";
 		form += "</head>";
 		form += "<!--Menu Superior-->";
-		form += "<body onload=\"isAdmin(true,null)\">";
+		form += "<body onload=\"isAdmin(true,null), mostrarBugados2(produtos)\">";
 		form += "<div id=\"menu\">";
 		form += "<header class=\"container header\">";
 		form += "<nav class=\"navbar navbar-expand-lg navbar-light bg-light menu\">";
@@ -408,12 +417,9 @@ public class ProdutoService {
 		form += "</nav>";
 		form += "</header>";
 		form += "</div>";
-		form += "<h1 id=\"insert\">Adicionar Produto</h1>";
-		form += "<section class=\"row card_insert\" id=\"tela\">";
-		form += "<div class=\"col-12 col-sm-12 col-md-6 col-lg-12\">";
+		form += "<h1 id=\"valid\">Validação de Produtos</h1>";
+		form += "<section class=\"row card_mercado\"  id=\"tela\">";
 		// parte da string
-		arquivos = leitura();
-		form += read(arquivos, form);
 		form += "</section>";
 		form += "<footer class=\"container footer\">";
 		form += "<div class=\"row\">";
@@ -425,6 +431,20 @@ public class ProdutoService {
 		form += "</main>";
 		form += "</body>";
 		form += "</html>";
+
+		String js = "";
+		js += "let produtos = [";
+		for (int i = 0; i < produtos.length; i++) {
+			if (produtos[i] != null) {
+				js += "{id: \"" + produtos[i].id + "\", nome: \"" + produtos[i].nome + "\", valor: \""
+						+ produtos[i].valor
+						+ "\"},";
+			} else {
+				i = produtos.length;
+			}
+		}
+		js += "{}]; ";
+		form = form.replaceFirst("VARIAVEL", js);
 
 		return form;
 	}
@@ -439,18 +459,23 @@ public class ProdutoService {
 			}
 
 		} catch (IOException ex) {
-			System.out.println("erro");
+			System.out.println("erro - leitura 1");
 		}
 		return arquivos;
 	}
 
-	public String read(String[] arquivos, String form) throws ParseException {
+	public produtoUser[] read(String[] arquivos) throws ParseException {
+		String form = "";
 		int tamanho = 0;
 		int i = 0;
 		int pos = 0;
+
+		boolean check = false;
+		float valor = 0;
 		String line = "";
 		String aux = "";
-
+		String local = "src/main/resources/public/notasFiscais/";
+		String endereco = "";
 		produtoUser[] produtos = new produtoUser[30];
 		int id = 0;
 		for (i = 0; i < arquivos.length; i++, tamanho++) {
@@ -461,54 +486,59 @@ public class ProdutoService {
 		}
 		i = 0;
 		while (i < tamanho) {
-			try (BufferedReader br = new BufferedReader(new FileReader(arquivos[i]))) {
-				while (!line.contains("<FIM>")) {
-					if (line.contains("ID=")) {
-						for (int j = 0; j < line.length(); j++) {
-							if (line.charAt(j) >= 48 && line.charAt(j) <= 57) {
-								aux += line.charAt(j);
-							}
-						}
-						id = Integer.parseInt(aux);
-						line = br.readLine().trim();
-					} else if(!line.contains("<FIM>")) {
-						aux = "";
-						aux = line;
-						line = br.readLine().trim();
+			endereco += local + arquivos[i];
+			try (BufferedReader br = new BufferedReader(new FileReader(endereco))) {
+				line = br.readLine().trim();
 
-						produtoUser product = new produtoUser(id, aux, Float.parseFloat(line));
+				for (int j = 0; j < line.length(); j++) {
+					if (line.charAt(j) >= 48 && line.charAt(j) <= 57) {
+						aux += line.charAt(j);
+					}
+				}
+				id = Integer.parseInt(aux);
+
+				line = br.readLine().trim();
+
+				line = br.readLine().trim();
+
+				while (!line.equals("<FIM>")) {
+
+					aux = "";
+					aux = line;
+
+					line = br.readLine().trim();
+					check = false;
+					for (int j = 0; j < line.length(); j++) {
+						if ((line.charAt(j) >= 48 && line.charAt(j) <= 57) || line.charAt(j) == 46) {
+							check = true;
+						} else {
+							check = false;
+							j = line.length();
+						}
+					}
+					if (check == true) {
+						valor = Float.parseFloat(line);
+						produtoUser product = new produtoUser(id, aux, valor);
 						produtos[pos] = product.clone();
 						pos++;
 					}
-					line = br.readLine().trim();
+					if (line.equals("<FIM>")) {
+
+					} else {
+						line = br.readLine();
+						line = br.readLine();
+					}
+
 				}
 
 			} catch (IOException ex) {
-				System.out.println("erro");
+				System.out.println("erro - leitura 2");
 			}
 			i++;
-		}
-		tamanho =0;
-		for (int j = 0; j < produtos.length; j++) {
-			if (produtos[i] == null) {
-				i = produtos.length;
-				tamanho--;
-			}
+			endereco = "";
 		}
 
-		for (int j = 0; j < tamanho; j++) {
-			form += "<form action=\"produto/adicionar\" method=\"post\">";
-			form += "<label for=\"username\">Produto</label><br>";
-			form += "<input type=\"text\" name=\"produto\" id=\"produto\" class=\"form-control\" value=\""+produtos[j].nome+"\">";
-			form += "<label for=\"username\">valor</label><br>";
-			form += "<input type=\"text\" name=\"valor\" id=\"valor\" class=\"form-control\" value=\""+produtos[j].valor+"\">";
-			form += "<label for=\"username\">Id Supermercado</label><br>";
-			form += "<input type=\"text\" name=\"idMercado\" id=\"idMercado\" class=\"form-control\" value=\""+produtos[j].id+"\">";
-			form += "<input type=\"submit\" value=\"Atualizar\" class=\"btn btn-primary\" id=\"btn-cad\"></form>";
-			
-		}
-		form += "</div>";
-		return form;
+		return produtos;
 	}
 
 	public Object getStrings(Request request, Response response) throws ParseException {
@@ -539,5 +569,104 @@ public class ProdutoService {
 		String html = makeFormProduto();
 		return html;
 	}
+
+	public String makeFormUpdates(boolean status) {
+        String form = "";
+        if (status == true) {
+            form = makeForm();
+        } else {
+
+            form += "<!doctype html>";
+            form += "<html lang=\"pt-br\">";
+            form += "<head>";
+            form += "<!-- Required meta tags -->";
+            form += "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">";
+            form += "<meta charset=\"utf-8\">";
+            form += "<title>SmartMarket</title>";
+            form += "<!-- Bootstrap CSS -->";
+            form += "<link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css\">";
+            form += "<script src=\"https://kit.fontawesome.com/c81b80495f.js\" crossorigin=\"anonymous\"></script>";
+            form += "<!-- Meu css -->";
+            form += "<script src=\"..\\app.js\"></script>";
+            //form += "<script> SUBSTITUIR </script>";
+            form += "<link rel=\"stylesheet\" href=\"..\\style.css\">";
+            form += "</head>";
+            form += "<!--Menu Superior-->";
+            form += "<body onLoad=\"isAdmin(),showTelaEditUser(), mostrarBugados()\">";
+            form += "<div id=\"menu\">";
+            form += "<header class=\"container header\">";
+            form += "<nav class=\"navbar navbar-expand-lg navbar-light bg-light menu\">";
+            form += "<button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSite\">";
+            form += "<span class=\"navbar-toggler-icon\"></span>";
+            form += "</button>";
+            form += "<div class=\"collapse navbar-collapse\" id=\"navbarSite\">";
+            form += "<ul class=\"navbar-nav mr-auto\">";
+            form += "<li class=\"nav-item name\">";
+            form += "<a class=\"nav-link\" href=\"..\\index.html\">SmartMarket</a>";
+            form += "</li>";
+            form += "<li class=\"nav-item menu_item\">";
+            form += "<a class=\"nav-link\" >|</a>";
+            form += "</li>";
+            form += "<li class=\"nav-item menu_item\">";
+            form += "<a class=\"nav-link\" href=\"..\\produtos\" method=\"get\">Produtos</a>";
+            form += "</li>";
+            form += "<li class=\"nav-item menu_item\">";
+            form += "<a class=\"nav-link\">|</a>";
+            form += "</li>";
+            form += "<li class=\"nav-item menu_item\">";
+            form += "<a class=\"nav-link\" href=\"..\\mercados\" method=\"get\">Supermercados</a>";
+            form += "<li class=\"nav-item menu_item\">";
+            form += "<a class=\"nav-link\">|</a>";
+            form += "</li>";
+            form += "<li class=\"nav-item menu_item\">";
+            form += "<a class=\"nav-link\" href=\"..\\login\" method=\"get\">Login</a>";
+            form += "</li>";
+            form += "</ul>";
+            form += "</div>";
+            form += "</nav>";
+            form += "</header>";
+            form += "</div>";
+            form += "<h1 id=\"valid\">Validação de Produtos</h1>";
+			form += "<section class=\"row card_mercado\"  id=\"tela\">";
+			// parte da string
+			form += "</section>";
+			form += "<footer class=\"container footer\">";
+			form += "<div class=\"row\">";
+			form += "<div class=\"col-12 footer_area\">";
+			form += "SmartMarket - Todos os direitos reservados - 2021";
+			form += "</div>";
+			form += "</div>";
+			form += "</footer>";
+			form += "</main>";
+			form += "</body>";
+			form += "</html>";
+        }
+        return form;
+    }
+
+	public Object update(Request request, Response response) {
+        int id = Integer.parseInt(request.queryParams("id"));
+        int idP = Integer.parseInt(request.queryParams("produtos"));
+        String valor = request.queryParams("valor");
+		System.out.println("Mercado: "+id+" prod: "+idP+" valor: "+valor);
+        String resp = "";
+
+        Comercializa prod = comercializaDAO.get(id, idP);
+		
+        boolean status = comercializaDAO.update(prod, valor);
+        if ( status == true) {
+
+            resp = "produto (" + idP + ") editado!";
+            status = true;
+            response.status(201); // 201 Created
+        } else {
+            resp = "produto (" + idP + ") não editado!";
+
+            response.status(404); // 404 Not found
+        }
+
+        String html = makeFormUpdates(status);
+        return html;
+    }
 
 }
